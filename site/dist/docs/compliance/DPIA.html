@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en-AU" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>DPIA skeleton · Knoxus Engineering documentation</title>
+<meta name="description" content="Data map, retention, access control and the ten questions engineering is sending to counsel.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<script>(function(){try{var t=localStorage.getItem('knoxus-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
+</head>
+<body data-root="../../">
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="sidebar" aria-label="Show navigation">
+    <span class="ic-bar" aria-hidden="true"></span>
+  </button>
+  <a class="brand" href="../../index.html">
+    <span class="brand-mark" aria-hidden="true">K</span>
+    <span class="brand-text"><strong>Knoxus</strong><span>Engineering documentation</span></span>
+  </a>
+  <button class="search-trigger" type="button" data-search-open aria-haspopup="dialog">
+    <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></svg><span>Search docs</span><kbd aria-hidden="true">/</kbd>
+  </button>
+  <button class="icon-btn theme-btn" type="button" data-theme-toggle aria-label="Switch colour theme">
+    <svg class="ic ic--sm theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg><svg class="ic ic--sm theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5"/></svg>
+  </button>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar" aria-label="Documentation sections">
+<div class="nav-group">
+<h2 class="nav-group__title">Overview</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/index.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 11.5 12 4.2l8.5 7.3"/><path d="M6 10.4V19.5h12V10.4"/></svg><span>Documentation index</span></a></li>
+<li><a class="nav-link" href="../../docs/PLAN.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6.5v12l5-2 5 2 6-2.5v-12L14 6.5l-5-2z"/><path d="M9 4.5v12"/><path d="M14 6.5v12"/></svg><span>Product &amp; delivery plan</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Architecture</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/architecture/STACK.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4 3.5 8.5 12 13l8.5-4.5z"/><path d="m4.5 12.5 7.5 4 7.5-4"/></svg><span>Technology stack</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Decisions</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/adr/index.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg><span>ADR index</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0000-adr-template.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0000 Template</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0001-record-architecture-decisions.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0001 Record decisions</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0002-web-first-spa-rust-backend.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0002 Web-first + Rust</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0003-modular-monolith-cargo-workspace.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0003 Modular monolith</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0004-school-issued-identities-multi-tenant.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0004 School identities</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0005-chat-privacy-tiering.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0005 Chat privacy tiering</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0006-curated-finite-feed.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0006 Curated finite feed</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0007-credits-append-only-ledger.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0007 Credits ledger</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0008-ai-gateway-prompt-packs.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0008 AI gateway</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0009-compute-hosting-gated-last.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0009 Compute gated last</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0010-tauri-desktop-shell.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0010 Tauri desktop shell</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Safety</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/threat-model/THREAT-MODEL.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6.2v5.6c0 4.2 2.9 7.4 7 8.7 4.1-1.3 7-4.5 7-8.7V6.2z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><span>Threat model</span></a></li>
+<li><a class="nav-link" href="../../docs/compliance/DPIA.html" aria-current="page"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 4.5H7.5v15h9v-15H15"/><path d="M9.5 3.5h5v2.2h-5z"/><path d="m9.5 13 1.8 1.8 3.6-3.6"/></svg><span>DPIA skeleton</span></a></li>
+<li><a class="nav-link" href="../../docs/economics/CREDITS-MODEL.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="6.5" rx="6.5" ry="2.8"/><path d="M5.5 6.5v11c0 1.5 2.9 2.8 6.5 2.8s6.5-1.3 6.5-2.8v-11"/><path d="M5.5 12c0 1.5 2.9 2.8 6.5 2.8s6.5-1.3 6.5-2.8"/></svg><span>Credits economy</span></a></li>
+</ul>
+</div>
+    <div class="nav-group nav-group--foot">
+      <h2 class="nav-group__title">Repository</h2>
+      <ul class="nav-list">
+        <li><a class="nav-link nav-link--sub" href="https://github.com/movainc/movadesktop" target="_blank" rel="noopener noreferrer"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>GitHub <span aria-hidden="true">↗</span></span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <main class="content" id="content">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="crumb-sep" aria-hidden="true">/</span> <span>Safety</span> <span class="crumb-sep" aria-hidden="true">/</span> <span aria-current="page">DPIA skeleton</span></nav>
+
+    <article class="prose">
+<h1 id="dpia-skeleton-knoxus">DPIA skeleton — Knoxus</h1>
+<p>Status: <strong>skeleton, incomplete by design.</strong> This is the structure to be filled in with counsel and the school&#39;s safeguarding lead. Sections marked <em>(fill)</em> are placeholders; §9 is the actual deliverable from engineering to counsel in this revision.</p>
+<p>Related: <a href="../PLAN.html">../PLAN.md</a> §8 · <a href="../adr/0005-chat-privacy-tiering.html">../adr/0005-chat-privacy-tiering.md</a> · <a href="../threat-model/THREAT-MODEL.html">../threat-model/THREAT-MODEL.md</a></p>
+<hr>
+<h2 id="1-purpose-of-this-dpia">1. Purpose of this DPIA<a class="anchor" href="#1-purpose-of-this-dpia" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p>Knoxus processes personal information of children, including content of communications, with a capability for staff oversight. A DPIA is required because the processing is high-risk by nature (children, large scale relative to the population, monitoring, and AI-generated content). It must be completed <strong>before</strong> Phase 3 (chat) begins, not before final launch.</p>
+<h2 id="2-roles-and-responsibilities">2. Roles and responsibilities<a class="anchor" href="#2-roles-and-responsibilities" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Role</th><th scope="col">Party</th><th scope="col">Notes</th></tr></thead>
+<tbody>
+<tr><td>Data controller / APP entity</td><td>The school (or the school system)</td><td><em>(confirm)</em></td></tr>
+<tr><td>Platform operator</td><td><em>(fill — school IT, a vendor, or the project team)</em></td><td>Determines access controls</td></tr>
+<tr><td>Processor(s)</td><td>LLM, telephony, media, CSAM, hosting vendors</td><td>List per §10</td></tr>
+<tr><td>Approval</td><td>Principal + safeguarding lead + <em>(fill)</em></td><td>Written sanction is a Phase 0 gate</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="3-data-map">3. Data map<a class="anchor" href="#3-data-map" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Data</th><th scope="col">Subject</th><th scope="col">Source</th><th scope="col">Purpose</th><th scope="col">Retention</th><th scope="col">Sensitivity</th></tr></thead>
+<tbody>
+<tr><td>Identity, year group, roles</td><td>Students, staff</td><td>School identity provider</td><td>Function of the service</td><td>Until exit + <em>(fill)</em></td><td>Personal</td></tr>
+<tr><td>Guardian contact details</td><td>Parents</td><td>School records</td><td>Contact, consent, oversight</td><td><em>(fill)</em></td><td>Personal</td></tr>
+<tr><td>Posts, comments, reactions</td><td>All</td><td>Users</td><td>Communication</td><td><em>(fill)</em></td><td>Personal</td></tr>
+<tr><td>Chat messages (by channel class)</td><td>Users</td><td>Users</td><td>Communication + oversight</td><td>Per class, see §7</td><td>Sensitive in context</td></tr>
+<tr><td>Moderation signals and reports</td><td>Users</td><td>Platform + users</td><td>Safety</td><td><em>(fill)</em></td><td>Sensitive; revealing</td></tr>
+<tr><td>Safeguarding records</td><td>Students</td><td>Staff</td><td>Duty of care, mandatory reporting</td><td>Long-term; per records authority</td><td>Highly sensitive</td></tr>
+<tr><td>Media (highlights, VCs metadata)</td><td>Users</td><td>Users</td><td>Communication</td><td><em>(fill)</em></td><td>Personal; VOICE NOT RECORDED</td></tr>
+<tr><td>AI prompt packs and outputs</td><td>Staff, students</td><td>Staff, platform</td><td>Assistance, moderation</td><td><em>(fill)</em></td><td>Personal in context</td></tr>
+<tr><td>Ledger, trades, balances</td><td>Users</td><td>Platform</td><td>Economy</td><td><em>(fill)</em></td><td>Personal; behavioural</td></tr>
+<tr><td>Compute projects and logs</td><td>Students</td><td>Students</td><td>Hosting</td><td><em>(fill)</em></td><td>Potentially illegal content</td></tr>
+<tr><td>Audit log of staff access</td><td>Staff</td><td>Platform</td><td>Accountability</td><td><em>(fill)</em></td><td>Sensitive to staff</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="4-necessity-and-proportionality">4. Necessity and proportionality<a class="anchor" href="#4-necessity-and-proportionality" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p><em>(fill)</em> The argument to make explicitly: oversight exists to meet the school&#39;s duty of care and mandatory reporting obligations, is bounded to the minimum access that achieves that, is visible to the students it covers, and is itself logged.</p>
+<h2 id="5-monitoring-justification-the-contested-part">5. Monitoring justification (the contested part)<a class="anchor" href="#5-monitoring-justification-the-contested-part" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p>Answer these in writing before Phase 3:</p>
+<ol>
+<li>Which channels are visible to whom, and why is each broader visibility necessary?</li>
+<li>Why is dual control plus logged justification sufficient for <code>Private</code> channels?</li>
+<li>What is the notification policy when a review occurs, and who can defer notification?</li>
+<li>Why can staff not read everything, when the brief originally wanted that? (Answer: because minimum-necessary access is what makes the capability lawful and survivable.)</li>
+</ol>
+<h2 id="6-consent-model">6. Consent model<a class="anchor" href="#6-consent-model" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p><em>(fill)</em> Student assent + guardian consent for under-18s; the limits of guardian authority over a child&#39;s privacy; alumni and 16+ E2EE tier where consent is individual; withdrawal handling; and how consent is captured and evidenced per student (not per school).</p>
+<h2 id="7-retention-schedule-fill">7. Retention schedule <em>(fill)</em><a class="anchor" href="#7-retention-schedule-fill" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Data class</th><th scope="col">Retention</th><th scope="col">Basis</th><th scope="col">Deletion mechanism</th></tr></thead>
+<tbody>
+<tr><td>Account and enrolment data</td><td>Until exit + <em>(fill)</em></td><td><em>(fill)</em></td><td>Hard delete job with audit</td></tr>
+<tr><td>Public posts and highlights</td><td><em>(fill)</em></td><td></td><td>Soft delete, then purge</td></tr>
+<tr><td>Supervised channel records</td><td><em>(fill)</em> — expect long</td><td>Duty of care, records authority</td><td>Immutable archive, restricted access</td></tr>
+<tr><td>Private channel messages</td><td><em>(fill)</em> — keep short</td><td>Minimum necessary</td><td>Automatic purge with evidence of purge</td></tr>
+<tr><td>Moderation signals</td><td><em>(fill)</em></td><td>Safety trend analysis</td><td>Aggregated after <em>(fill)</em></td></tr>
+<tr><td>Safeguarding records</td><td>Long-term, per school records policy</td><td>Mandatory reporting evidence</td><td>Never auto-deleted; reviewed by the school</td></tr>
+<tr><td>Audit log of staff access</td><td><em>(fill)</em>, typically ≥ 2 years</td><td>Accountability</td><td>Append-only, exportable</td></tr>
+<tr><td>Compute project artifacts</td><td>30 days after project end</td><td><em>(fill)</em></td><td>Purge, then confirm</td></tr>
+</tbody>
+</table>
+</div>
+<p>The single most defensible policy here: **keep private-channel content for the shortest period that satisfies safety needs, and keep records of <em>oversight</em> for longer than the content itself.**</p>
+<h2 id="8-access-control-and-audit">8. Access control and audit<a class="anchor" href="#8-access-control-and-audit" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<ul>
+<li>Role-based access with per-channel visibility classes (<a href="../adr/0005-chat-privacy-tiering.html">ADR-0005</a>).</li>
+<li><code>Private</code> content reads require two approvers and a structured reason code (investigation, court order, safeguarding escalation, guardian request with student knowledge).</li>
+<li>Every read of another person&#39;s content writes an immutable audit entry: actor, subject, channel class, reason code, approver, timestamp, and the case reference.</li>
+<li>Student notification on review, unless a named safeguarding lead defers it in writing.</li>
+<li>Quarterly access review: who can approve, who approved, and what the reasons were.</li>
+</ul>
+<h2 id="9-questions-for-counsel-the-deliverable-from-engineering">9. Questions for counsel (the deliverable from engineering)<a class="anchor" href="#9-questions-for-counsel-the-deliverable-from-engineering" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<ol>
+<li>Does a school-authorised service of this shape fall inside or outside the &quot;age-restricted social media platform&quot; definition, including under the exclusion instrument (F2025L00889)? What design changes would strengthen the position?</li>
+<li>Is transparent, disclosed monitoring of student chat lawful with guardian consent and student assent — and what are the limits of guardian authority over a child&#39;s communications?</li>
+<li>Which state surveillance/device laws apply to voice sessions, screen share, and any form of recording, and does our no-recording invariant remove that exposure entirely?</li>
+<li>What are the retention obligations for safeguarding records, and how do they interact with minimum-necessary storage of chat content?</li>
+<li>Are platform staff &quot;mandatory reporters&quot;, or must escalation always route to a school employee who is? What SLA is defensible?</li>
+<li>Can we send student message content to an offshore LLM provider at all; if so, under what contractual and redaction conditions?</li>
+<li>What are our obligations on discovering CSAM in a student&#39;s hosted content or uploads, and what must our detection-and-escalation path look like?</li>
+<li>What must the guardian consent instrument say, and is per-student consent required?</li>
+<li>Do the platform&#39;s economy mechanics (rewards, missions, monitored trades, market simulation) trigger any consumer, gambling, or financial-services regulation?</li>
+<li>What insurance cover (cyber, professional indemnity) should the school hold before the compute tier ships?</li>
+</ol>
+<h2 id="10-third-party-processors-fill">10. Third-party processors <em>(fill)</em><a class="anchor" href="#10-third-party-processors-fill" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Vendor</th><th scope="col">Role</th><th scope="col">Data sent</th><th scope="col">Location</th><th scope="col">Agreement status</th></tr></thead>
+<tbody>
+<tr><td>LLM provider</td><td>AI replies, moderation assist</td><td>Redacted message content</td><td><em>(fill)</em></td><td>Not yet selected</td></tr>
+<tr><td>Telephony</td><td>School-number calls</td><td>Numbers, call metadata</td><td><em>(fill)</em></td><td>Not yet selected</td></tr>
+<tr><td>CSAM detection</td><td>Hash-match escalation</td><td>Media hashes/metadata</td><td><em>(fill)</em></td><td>Not yet selected</td></tr>
+<tr><td>Media/CDN</td><td>Storage and delivery</td><td>Uploaded media</td><td><em>(fill)</em></td><td>Not yet selected</td></tr>
+<tr><td>Compute back-end</td><td>Student hosting</td><td>Hosted content</td><td><em>(fill)</em></td><td>Not yet selected</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="11-risk-register-fill">11. Risk register <em>(fill)</em><a class="anchor" href="#11-risk-register-fill" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p>Each row: risk, likelihood, impact, existing control, residual rating, owner, review date. Seed the register from <a href="../threat-model/THREAT-MODEL.html">../threat-model/THREAT-MODEL.md</a> §6 rather than writing it from scratch.</p>
+<h2 id="12-sign-off">12. Sign-off<a class="anchor" href="#12-sign-off" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Role</th><th scope="col">Name</th><th scope="col">Date</th><th scope="col">Signature</th></tr></thead>
+<tbody>
+<tr><td>Principal / delegate</td><td></td><td></td><td></td></tr>
+<tr><td>Safeguarding lead</td><td></td><td></td><td></td></tr>
+<tr><td>Platform operator</td><td></td><td></td><td></td></tr>
+<tr><td>Counsel</td><td></td><td></td><td></td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Review cadence:</strong> at each phase gate, on any material change to monitoring or retention, and after any safeguarding incident. This DPIA is not a one-off document.</p>
+    </article>
+<nav class="pager" aria-label="Document navigation">
+<a class="pager-link pager-link--prev" rel="prev" href="../../docs/threat-model/THREAT-MODEL.html"><span class="pager-arrow" aria-hidden="true">←</span><span><span class="pager-label">Previous</span><span class="pager-title">Threat model</span></span></a>
+<a class="pager-link pager-link--next" rel="next" href="../../docs/economics/CREDITS-MODEL.html"><span><span class="pager-label">Next</span><span class="pager-title">Credits economy</span></span><span class="pager-arrow" aria-hidden="true">→</span></a>
+</nav>
+    <footer class="page-foot">
+      <p>Source of truth: <code>docs/compliance/DPIA.md</code> · generated by <code>site/build.mjs</code> · status: planning · pre-code</p>
+      <p><a href="#content">Back to top</a></p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="On this page">
+    <h2 class="toc-title">On this page</h2>
+<ul class="toc-list">
+<li class="toc-l2"><a href="#1-purpose-of-this-dpia">1. Purpose of this DPIA</a></li>
+<li class="toc-l2"><a href="#2-roles-and-responsibilities">2. Roles and responsibilities</a></li>
+<li class="toc-l2"><a href="#3-data-map">3. Data map</a></li>
+<li class="toc-l2"><a href="#4-necessity-and-proportionality">4. Necessity and proportionality</a></li>
+<li class="toc-l2"><a href="#5-monitoring-justification-the-contested-part">5. Monitoring justification (the contested part)</a></li>
+<li class="toc-l2"><a href="#6-consent-model">6. Consent model</a></li>
+<li class="toc-l2"><a href="#7-retention-schedule-fill">7. Retention schedule *(fill)*</a></li>
+<li class="toc-l2"><a href="#8-access-control-and-audit">8. Access control and audit</a></li>
+<li class="toc-l2"><a href="#9-questions-for-counsel-the-deliverable-from-engineering">9. Questions for counsel (the deliverable from engineering)</a></li>
+<li class="toc-l2"><a href="#10-third-party-processors-fill">10. Third-party processors *(fill)*</a></li>
+<li class="toc-l2"><a href="#11-risk-register-fill">11. Risk register *(fill)*</a></li>
+<li class="toc-l2"><a href="#12-sign-off">12. Sign-off</a></li>
+</ul>
+  </aside>
+</div>
+<dialog class="searchdlg" id="search" aria-label="Search documentation">
+  <div class="search-box">
+    <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></svg>
+    <label class="visually-hidden" for="search-input">Search documentation</label>
+    <input type="search" id="search-input" placeholder="Search headings and text…" autocomplete="off" aria-controls="search-results" aria-describedby="search-status">
+    <button class="search-close" type="button" data-search-close>Close</button>
+  </div>
+  <p class="search-status" id="search-status" role="status" aria-live="polite"></p>
+  <ul class="search-results" id="search-results"></ul>
+</dialog>
+<script src="../../assets/search-index.js" defer></script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

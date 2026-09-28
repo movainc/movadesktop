@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en-AU" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>ADR index · Knoxus Engineering documentation</title>
+<meta name="description" content="Every architecture decision record, its status, and the decisions deliberately deferred.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<script>(function(){try{var t=localStorage.getItem('knoxus-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
+</head>
+<body data-root="../../">
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="sidebar" aria-label="Show navigation">
+    <span class="ic-bar" aria-hidden="true"></span>
+  </button>
+  <a class="brand" href="../../index.html">
+    <span class="brand-mark" aria-hidden="true">K</span>
+    <span class="brand-text"><strong>Knoxus</strong><span>Engineering documentation</span></span>
+  </a>
+  <button class="search-trigger" type="button" data-search-open aria-haspopup="dialog">
+    <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></svg><span>Search docs</span><kbd aria-hidden="true">/</kbd>
+  </button>
+  <button class="icon-btn theme-btn" type="button" data-theme-toggle aria-label="Switch colour theme">
+    <svg class="ic ic--sm theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg><svg class="ic ic--sm theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5"/></svg>
+  </button>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar" aria-label="Documentation sections">
+<div class="nav-group">
+<h2 class="nav-group__title">Overview</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/index.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 11.5 12 4.2l8.5 7.3"/><path d="M6 10.4V19.5h12V10.4"/></svg><span>Documentation index</span></a></li>
+<li><a class="nav-link" href="../../docs/PLAN.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6.5v12l5-2 5 2 6-2.5v-12L14 6.5l-5-2z"/><path d="M9 4.5v12"/><path d="M14 6.5v12"/></svg><span>Product &amp; delivery plan</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Architecture</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/architecture/STACK.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4 3.5 8.5 12 13l8.5-4.5z"/><path d="m4.5 12.5 7.5 4 7.5-4"/></svg><span>Technology stack</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Decisions</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/adr/index.html" aria-current="page"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg><span>ADR index</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0000-adr-template.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0000 Template</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0001-record-architecture-decisions.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0001 Record decisions</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0002-web-first-spa-rust-backend.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0002 Web-first + Rust</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0003-modular-monolith-cargo-workspace.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0003 Modular monolith</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0004-school-issued-identities-multi-tenant.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0004 School identities</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0005-chat-privacy-tiering.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0005 Chat privacy tiering</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0006-curated-finite-feed.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0006 Curated finite feed</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0007-credits-append-only-ledger.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0007 Credits ledger</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0008-ai-gateway-prompt-packs.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0008 AI gateway</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0009-compute-hosting-gated-last.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0009 Compute gated last</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0010-tauri-desktop-shell.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0010 Tauri desktop shell</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Safety</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/threat-model/THREAT-MODEL.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6.2v5.6c0 4.2 2.9 7.4 7 8.7 4.1-1.3 7-4.5 7-8.7V6.2z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><span>Threat model</span></a></li>
+<li><a class="nav-link" href="../../docs/compliance/DPIA.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 4.5H7.5v15h9v-15H15"/><path d="M9.5 3.5h5v2.2h-5z"/><path d="m9.5 13 1.8 1.8 3.6-3.6"/></svg><span>DPIA skeleton</span></a></li>
+<li><a class="nav-link" href="../../docs/economics/CREDITS-MODEL.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="6.5" rx="6.5" ry="2.8"/><path d="M5.5 6.5v11c0 1.5 2.9 2.8 6.5 2.8s6.5-1.3 6.5-2.8v-11"/><path d="M5.5 12c0 1.5 2.9 2.8 6.5 2.8s6.5-1.3 6.5-2.8"/></svg><span>Credits economy</span></a></li>
+</ul>
+</div>
+    <div class="nav-group nav-group--foot">
+      <h2 class="nav-group__title">Repository</h2>
+      <ul class="nav-list">
+        <li><a class="nav-link nav-link--sub" href="https://github.com/movainc/movadesktop" target="_blank" rel="noopener noreferrer"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>GitHub <span aria-hidden="true">↗</span></span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <main class="content" id="content">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="crumb-sep" aria-hidden="true">/</span> <span>Decisions</span> <span class="crumb-sep" aria-hidden="true">/</span> <span aria-current="page">ADR index</span></nav>
+
+    <article class="prose">
+<h1 id="architecture-decision-records">Architecture decision records</h1>
+<p>One file per decision that is expensive to reverse. Format and rules: <a href="0000-adr-template.html">0000-adr-template.md</a>. An accepted ADR is superseded by a <em>new</em> ADR that links back; numbers are never reused.</p>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">ADR</th><th scope="col">Decision</th><th scope="col">Status</th></tr></thead>
+<tbody>
+<tr><td><a href="0000-adr-template.html">0000</a></td><td>Template</td><td>—</td></tr>
+<tr><td><a href="0001-record-architecture-decisions.html">0001</a></td><td>Record architecture decisions</td><td>accepted</td></tr>
+<tr><td><a href="0002-web-first-spa-rust-backend.html">0002</a></td><td>Web-first SPA with a Rust back-end; Tauri desktop; Rust CLI</td><td>accepted</td></tr>
+<tr><td><a href="0003-modular-monolith-cargo-workspace.html">0003</a></td><td>Modular monolith in one Cargo workspace; one binary, role flags</td><td>accepted</td></tr>
+<tr><td><a href="0004-school-issued-identities-multi-tenant.html">0004</a></td><td>School-issued identities, multi-tenant schema, tenant-scoped handles</td><td>accepted</td></tr>
+<tr><td><a href="0005-chat-privacy-tiering.html">0005</a></td><td>Channel-tiered privacy; disclosed monitoring; no E2EE under 16</td><td><strong>accepted, pending counsel</strong></td></tr>
+<tr><td><a href="0006-curated-finite-feed.html">0006</a></td><td>Curated, finite, chronological highlights — no recommender</td><td>accepted</td></tr>
+<tr><td><a href="0007-credits-append-only-ledger.html">0007</a></td><td>Credits as an append-only double-entry ledger; no real money</td><td>accepted</td></tr>
+<tr><td><a href="0008-ai-gateway-prompt-packs.html">0008</a></td><td>AI behind a gateway; versioned prompt packs; mandatory disclosure</td><td><strong>accepted, pending counsel</strong></td></tr>
+<tr><td><a href="0009-compute-hosting-gated-last.html">0009</a></td><td>Student compute ships last, static-first, egress-restricted</td><td>accepted</td></tr>
+<tr><td><a href="0010-tauri-desktop-shell.html">0010</a></td><td>Desktop client is a Tauri shell around the same SPA</td><td>accepted</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="decisions-deliberately-not-made-yet">Decisions deliberately not made yet<a class="anchor" href="#decisions-deliberately-not-made-yet" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Topic</th><th scope="col">Why deferred</th><th scope="col">Trigger to decide</th></tr></thead>
+<tbody>
+<tr><td>Compute back-end vendor (Azure/GCP/AWS/OCI/DO)</td><td>Depends on education-credit availability</td><td>Before Phase 6</td></tr>
+<tr><td>Voice/video SFU vendor</td><td>Needs an abuse and cost test with real concurrency</td><td>Before Phase 3 voice</td></tr>
+<tr><td>CSAM detection vendor</td><td>Requires counsel and safeguarding sign-off, not an engineering preference</td><td>Before Phase 3</td></tr>
+<tr><td>Telephony provider for &quot;school number&quot; calls</td><td>Number portability, consent and recording law are open questions</td><td>Before Phase 3</td></tr>
+<tr><td>App-store distribution</td><td>PWA-first removes the urgency (<a href="0002-web-first-spa-rust-backend.html">ADR-0002</a>)</td><td>Post-pilot</td></tr>
+<tr><td>Search infrastructure</td><td>Premature at current scale</td><td>Phase 5</td></tr>
+</tbody>
+</table>
+</div>
+    </article>
+<nav class="pager" aria-label="Document navigation">
+<a class="pager-link pager-link--prev" rel="prev" href="../../docs/architecture/STACK.html"><span class="pager-arrow" aria-hidden="true">←</span><span><span class="pager-label">Previous</span><span class="pager-title">Technology stack</span></span></a>
+<a class="pager-link pager-link--next" rel="next" href="../../docs/adr/0000-adr-template.html"><span><span class="pager-label">Next</span><span class="pager-title">ADR-0000 Template</span></span><span class="pager-arrow" aria-hidden="true">→</span></a>
+</nav>
+    <footer class="page-foot">
+      <p>Source of truth: <code>docs/adr/README.md</code> · generated by <code>site/build.mjs</code> · status: planning · pre-code</p>
+      <p><a href="#content">Back to top</a></p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="On this page">
+    <h2 class="toc-title">On this page</h2>
+<ul class="toc-list">
+<li class="toc-l2"><a href="#decisions-deliberately-not-made-yet">Decisions deliberately not made yet</a></li>
+</ul>
+  </aside>
+</div>
+<dialog class="searchdlg" id="search" aria-label="Search documentation">
+  <div class="search-box">
+    <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></svg>
+    <label class="visually-hidden" for="search-input">Search documentation</label>
+    <input type="search" id="search-input" placeholder="Search headings and text…" autocomplete="off" aria-controls="search-results" aria-describedby="search-status">
+    <button class="search-close" type="button" data-search-close>Close</button>
+  </div>
+  <p class="search-status" id="search-status" role="status" aria-live="polite"></p>
+  <ul class="search-results" id="search-results"></ul>
+</dialog>
+<script src="../../assets/search-index.js" defer></script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

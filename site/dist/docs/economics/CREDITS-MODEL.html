@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en-AU" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Credits economy · Knoxus Engineering documentation</title>
+<meta name="description" content="Rates, worked examples, faucets and sinks, real-dollar exposure and anti-abuse controls.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<script>(function(){try{var t=localStorage.getItem('knoxus-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
+</head>
+<body data-root="../../">
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="sidebar" aria-label="Show navigation">
+    <span class="ic-bar" aria-hidden="true"></span>
+  </button>
+  <a class="brand" href="../../index.html">
+    <span class="brand-mark" aria-hidden="true">K</span>
+    <span class="brand-text"><strong>Knoxus</strong><span>Engineering documentation</span></span>
+  </a>
+  <button class="search-trigger" type="button" data-search-open aria-haspopup="dialog">
+    <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></svg><span>Search docs</span><kbd aria-hidden="true">/</kbd>
+  </button>
+  <button class="icon-btn theme-btn" type="button" data-theme-toggle aria-label="Switch colour theme">
+    <svg class="ic ic--sm theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg><svg class="ic ic--sm theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5"/></svg>
+  </button>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar" aria-label="Documentation sections">
+<div class="nav-group">
+<h2 class="nav-group__title">Overview</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/index.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 11.5 12 4.2l8.5 7.3"/><path d="M6 10.4V19.5h12V10.4"/></svg><span>Documentation index</span></a></li>
+<li><a class="nav-link" href="../../docs/PLAN.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6.5v12l5-2 5 2 6-2.5v-12L14 6.5l-5-2z"/><path d="M9 4.5v12"/><path d="M14 6.5v12"/></svg><span>Product &amp; delivery plan</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Architecture</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/architecture/STACK.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4 3.5 8.5 12 13l8.5-4.5z"/><path d="m4.5 12.5 7.5 4 7.5-4"/></svg><span>Technology stack</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Decisions</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/adr/index.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg><span>ADR index</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0000-adr-template.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0000 Template</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0001-record-architecture-decisions.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0001 Record decisions</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0002-web-first-spa-rust-backend.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0002 Web-first + Rust</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0003-modular-monolith-cargo-workspace.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0003 Modular monolith</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0004-school-issued-identities-multi-tenant.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0004 School identities</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0005-chat-privacy-tiering.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0005 Chat privacy tiering</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0006-curated-finite-feed.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0006 Curated finite feed</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0007-credits-append-only-ledger.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0007 Credits ledger</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0008-ai-gateway-prompt-packs.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0008 AI gateway</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0009-compute-hosting-gated-last.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0009 Compute gated last</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0010-tauri-desktop-shell.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0010 Tauri desktop shell</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Safety</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/threat-model/THREAT-MODEL.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6.2v5.6c0 4.2 2.9 7.4 7 8.7 4.1-1.3 7-4.5 7-8.7V6.2z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><span>Threat model</span></a></li>
+<li><a class="nav-link" href="../../docs/compliance/DPIA.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 4.5H7.5v15h9v-15H15"/><path d="M9.5 3.5h5v2.2h-5z"/><path d="m9.5 13 1.8 1.8 3.6-3.6"/></svg><span>DPIA skeleton</span></a></li>
+<li><a class="nav-link" href="../../docs/economics/CREDITS-MODEL.html" aria-current="page"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="6.5" rx="6.5" ry="2.8"/><path d="M5.5 6.5v11c0 1.5 2.9 2.8 6.5 2.8s6.5-1.3 6.5-2.8v-11"/><path d="M5.5 12c0 1.5 2.9 2.8 6.5 2.8s6.5-1.3 6.5-2.8"/></svg><span>Credits economy</span></a></li>
+</ul>
+</div>
+    <div class="nav-group nav-group--foot">
+      <h2 class="nav-group__title">Repository</h2>
+      <ul class="nav-list">
+        <li><a class="nav-link nav-link--sub" href="https://github.com/movainc/movadesktop" target="_blank" rel="noopener noreferrer"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>GitHub <span aria-hidden="true">↗</span></span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <main class="content" id="content">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="crumb-sep" aria-hidden="true">/</span> <span>Safety</span> <span class="crumb-sep" aria-hidden="true">/</span> <span aria-current="page">Credits economy</span></nav>
+
+    <article class="prose">
+<h1 id="credits-economy-model-rates-and-exposure">Credits economy — model, rates and exposure</h1>
+<p>The brief&#39;s own numbers are internally consistent, which is a good sign. This document records the formulas, checks the faucets against the sinks, and works out the real-dollar exposure that the virtual rates conceal. See <a href="../adr/0007-credits-append-only-ledger.html">ADR-0007</a>.</p>
+<h2 id="1-rates-as-specified">1. Rates (as specified)<a class="anchor" href="#1-rates-as-specified" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Resource</th><th scope="col">Rate</th><th scope="col">Unit</th></tr></thead>
+<tbody>
+<tr><td>CPU</td><td>2 credits</td><td>per vCPU-hour</td></tr>
+<tr><td>RAM</td><td>0.4 credits</td><td>per GB-hour</td></tr>
+<tr><td>VRAM</td><td>5 credits</td><td>per GB-VRAM-hour (minimum 4 GB)</td></tr>
+<tr><td>Compute ceiling</td><td>8 vCPU / 32 GB</td><td>per instance, anti-abuse cap</td></tr>
+<tr><td>Daily earn cap</td><td>30 credits</td><td>excl. investment proceeds</td></tr>
+<tr><td>Minimum activity runway</td><td>~4 days</td><td>for &quot;most purchaseable items&quot;</td></tr>
+</tbody>
+</table>
+</div>
+<p>VRAM implies the headline GPU prices in the brief: 96 GB × 5 = <strong>480/hr</strong> (RTX Pro 6000), 80 GB × 5 = <strong>400/hr</strong> (H100). One day on a full RTX Pro 6000 = 480 × 24 = <strong>11 520 credits</strong>.</p>
+<h2 id="2-worked-examples-are-the-numbers-sane">2. Worked examples — are the numbers sane?<a class="anchor" href="#2-worked-examples-are-the-numbers-sane" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Instance</th><th scope="col">Formula</th><th scope="col">Credits/hour</th><th scope="col">Hours per 30-credit day</th></tr></thead>
+<tbody>
+<tr><td>2 vCPU / 4 GB (dev box)</td><td>2×2 + 4×0.4</td><td>5.6</td><td>~5.4 h</td></tr>
+<tr><td>4 vCPU / 8 GB</td><td>4×2 + 8×0.4</td><td>11.2</td><td>~2.7 h</td></tr>
+<tr><td>8 vCPU / 32 GB (ceiling)</td><td>8×2 + 32×0.4</td><td>28.8</td><td>~1.04 h</td></tr>
+<tr><td>H100 80 GB</td><td>80×5</td><td>400</td><td>13.3 <strong>days</strong> of saving</td></tr>
+<tr><td>RTX Pro 6000 96 GB</td><td>96×5</td><td>480</td><td>16 <strong>days</strong> of saving</td></tr>
+</tbody>
+</table>
+</div>
+<p>Conclusions: the &quot;cannot run a maxed instance 24/7&quot; property holds, the ceiling is self-enforcing, and GPU access is effectively a rare, application-gated privilege rather than a feature. That is the intended behaviour — keep it.</p>
+<h2 id="3-faucets-and-sinks">3. Faucets and sinks<a class="anchor" href="#3-faucets-and-sinks" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Faucet (credits in)</th><th scope="col">Notes</th><th scope="col">Sink (credits out)</th><th scope="col">Notes</th></tr></thead>
+<tbody>
+<tr><td>Missions, activity streaks</td><td>Capped at 30/day per account</td><td>Compute (VPS/GPU)</td><td>Dominant sink; inherently elastic, needs a hard cap</td></tr>
+<tr><td>Investment proceeds</td><td><strong>Separate pool</strong>, cannot raise the daily spend cap</td><td>AI credits (replies, images, video)</td><td>Metered per call; video is the most expensive line</td></tr>
+<tr><td>Rewards from approved community events</td><td>School-controlled, small</td><td>Cosmetics, fonts, profile items</td><td>Primary cosmetic sink</td></tr>
+<tr><td>—</td><td>—</td><td>Advertising (own project/community/video)</td><td>Good sink: no marginal cost to the school</td></tr>
+<tr><td>—</td><td>—</td><td>Physical goods, trades, limited cosmetics</td><td>Needs a fulfilment budget and abuse review</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Rule that keeps the economy from breaking:</strong> gains from the investment pool must <strong>not</strong> be spendable at the same rate as earned credits. Otherwise compounding turns into unlimited compute and the daily cap stops binding.</p>
+<h2 id="4-the-cost-the-virtual-rates-hide">4. The cost the virtual rates hide<a class="anchor" href="#4-the-cost-the-virtual-rates-hide" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p>Credits are not money, so the <em>real</em> constraint is the platform&#39;s cash budget. Worst case for the maxed instance at ~US$0.30–0.60/hour of cloud vCPU+RAM:</p>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Scenario</th><th scope="col">Real cost</th></tr></thead>
+<tbody>
+<tr><td>One student maxed, 1.04 h/day</td><td>~US$0.30–0.60 / student-day</td></tr>
+<tr><td>200 maxed students</td><td>~US$60–120 / day (~US$1 800–3 600 / month)</td></tr>
+<tr><td>800 maxed students</td><td>~US$240–480 / day (~US$7 000–14 000 / month)</td></tr>
+</tbody>
+</table>
+</div>
+<p>Free compute gets abused, so plan for the worst case, not the average:</p>
+<ol>
+<li><strong>Education credit programmes</strong> (Azure/AWS/GCP for Education) — target marginal cost ≈ 0 before offering the tier at all. This is the single highest-leverage action in this document.</li>
+<li><strong>Two circuit breakers:</strong> per-student monthly cap <em>and</em> a school-wide global cap that pauses new compute provisioning with a visible reason (never silently fail).</li>
+<li><strong>SSO-bound single identity</strong> — one account per student, which is what makes the earn cap real. Without it, alt accounts multiply both the cap and the cost.</li>
+<li><strong>Video generation is the spikiest line item</strong> (~US$0.05–1.00 per clip). Quota it in <em>count</em>, not credits, and consider a teacher-approved weekly showcase instead of open generation.</li>
+<li><strong>Never let credits be purchased with money</strong> — it converts play money into real consumer purchases by minors, and pulls in consumer-law and app-store obligations.</li>
+</ol>
+<h2 id="5-anti-abuse-on-the-earn-side">5. Anti-abuse on the earn side<a class="anchor" href="#5-anti-abuse-on-the-earn-side" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Vector</th><th scope="col">Control</th></tr></thead>
+<tbody>
+<tr><td>Alt accounts farming missions</td><td>SSO identity, device fingerprint correlation, mission idempotency keys</td></tr>
+<tr><td>Mission farming by automation</td><td>Server-side mission evaluation from real events, never client claims</td></tr>
+<tr><td>Mining / proxy on student compute</td><td>Egress allowlist, no persistent outbound, CPU-pattern + egress anomaly detection, pre-emptible instances</td></tr>
+<tr><td>Ledger tampering</td><td>Append-only double-entry journal; balances are derived, never written</td></tr>
+<tr><td>Trade laundering between accounts</td><td>Trade monitoring, value-band heuristics, school review for large transfers</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="6-tuning-levers-in-order-of-preference">6. Tuning levers (in order of preference)<a class="anchor" href="#6-tuning-levers-in-order-of-preference" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<ol>
+<li>Mission grant values and the daily cap (blunt but instant).</li>
+<li>Compute rate multiplier — a single config value, not a code change.</li>
+<li>Per-tier quotas (video clips/week, AI credits/day).</li>
+<li>Instance ceiling (8 vCPU / 32 GB) and idle timeout (4 h).</li>
+<li>Cosmetics prices (the mirror-image lever: raise prices before raising the cap).</li>
+</ol>
+<p>Every lever lives in tenant config, versioned, with an effective date — never hardcoded, because the economy will be re-tuned after the first month of real data.</p>
+<h2 id="7-open-questions-for-the-sponsor">7. Open questions for the sponsor<a class="anchor" href="#7-open-questions-for-the-sponsor" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<ol>
+<li>Who funds the compute budget, and what is the monthly ceiling before the global circuit breaker trips?</li>
+<li>Are education credit programmes (Azure/AWS/GCP for Education) available through the school&#39;s existing agreements? If yes, the marginal cost of the compute tier approaches zero and the tier becomes politically viable.</li>
+<li>Do guardians see a student&#39;s balance and transaction history? (Recommendation: yes for minors, read-only — hiding it invites the same suspicion the platform is trying not to create.)</li>
+<li>Are physical-item redemptions fulfilled centrally by the school, and who owns the stock risk?</li>
+<li>Can students gift credits to each other, or only trade items? (Gifting is a bullying and favouritism vector; recommendation: items only, value-banded, monitored.)</li>
+<li>Which market-data licence covers the investment simulation, and is a delayed feed acceptable? (Delayed data usually is; real-time usually is not, without a vendor agreement.)</li>
+</ol>
+<h2 id="8-invariant-summary">8. Invariant summary<a class="anchor" href="#8-invariant-summary" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<ul>
+<li>Balances are <strong>derived</strong> from an append-only journal and never written directly.</li>
+<li>The <strong>grant</strong> cap (30/day) is enforced at grant time; the spend side is bounded by budget breakers.</li>
+<li><strong>Investment proceeds cannot</strong> be spent as freely as earned credits, or the cap stops binding.</li>
+<li>Every rate and price is <strong>tenant config with an effective date</strong>, versioned, and auditable.</li>
+</ul>
+    </article>
+<nav class="pager" aria-label="Document navigation">
+<a class="pager-link pager-link--prev" rel="prev" href="../../docs/compliance/DPIA.html"><span class="pager-arrow" aria-hidden="true">←</span><span><span class="pager-label">Previous</span><span class="pager-title">DPIA skeleton</span></span></a>
+<span></span>
+</nav>
+    <footer class="page-foot">
+      <p>Source of truth: <code>docs/economics/CREDITS-MODEL.md</code> · generated by <code>site/build.mjs</code> · status: planning · pre-code</p>
+      <p><a href="#content">Back to top</a></p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="On this page">
+    <h2 class="toc-title">On this page</h2>
+<ul class="toc-list">
+<li class="toc-l2"><a href="#1-rates-as-specified">1. Rates (as specified)</a></li>
+<li class="toc-l2"><a href="#2-worked-examples-are-the-numbers-sane">2. Worked examples — are the numbers sane?</a></li>
+<li class="toc-l2"><a href="#3-faucets-and-sinks">3. Faucets and sinks</a></li>
+<li class="toc-l2"><a href="#4-the-cost-the-virtual-rates-hide">4. The cost the virtual rates hide</a></li>
+<li class="toc-l2"><a href="#5-anti-abuse-on-the-earn-side">5. Anti-abuse on the earn side</a></li>
+<li class="toc-l2"><a href="#6-tuning-levers-in-order-of-preference">6. Tuning levers (in order of preference)</a></li>
+<li class="toc-l2"><a href="#7-open-questions-for-the-sponsor">7. Open questions for the sponsor</a></li>
+<li class="toc-l2"><a href="#8-invariant-summary">8. Invariant summary</a></li>
+</ul>
+  </aside>
+</div>
+<dialog class="searchdlg" id="search" aria-label="Search documentation">
+  <div class="search-box">
+    <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></svg>
+    <label class="visually-hidden" for="search-input">Search documentation</label>
+    <input type="search" id="search-input" placeholder="Search headings and text…" autocomplete="off" aria-controls="search-results" aria-describedby="search-status">
+    <button class="search-close" type="button" data-search-close>Close</button>
+  </div>
+  <p class="search-status" id="search-status" role="status" aria-live="polite"></p>
+  <ul class="search-results" id="search-results"></ul>
+</dialog>
+<script src="../../assets/search-index.js" defer></script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

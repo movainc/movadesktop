@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en-AU" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>ADR-0007 Credits ledger · Knoxus Engineering documentation</title>
+<meta name="description" content="Engineering documentation">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<script>(function(){try{var t=localStorage.getItem('knoxus-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
+</head>
+<body data-root="../../">
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="sidebar" aria-label="Show navigation">
+    <span class="ic-bar" aria-hidden="true"></span>
+  </button>
+  <a class="brand" href="../../index.html">
+    <span class="brand-mark" aria-hidden="true">K</span>
+    <span class="brand-text"><strong>Knoxus</strong><span>Engineering documentation</span></span>
+  </a>
+  <button class="search-trigger" type="button" data-search-open aria-haspopup="dialog">
+    <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></svg><span>Search docs</span><kbd aria-hidden="true">/</kbd>
+  </button>
+  <button class="icon-btn theme-btn" type="button" data-theme-toggle aria-label="Switch colour theme">
+    <svg class="ic ic--sm theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg><svg class="ic ic--sm theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5"/></svg>
+  </button>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar" aria-label="Documentation sections">
+<div class="nav-group">
+<h2 class="nav-group__title">Overview</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/index.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 11.5 12 4.2l8.5 7.3"/><path d="M6 10.4V19.5h12V10.4"/></svg><span>Documentation index</span></a></li>
+<li><a class="nav-link" href="../../docs/PLAN.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6.5v12l5-2 5 2 6-2.5v-12L14 6.5l-5-2z"/><path d="M9 4.5v12"/><path d="M14 6.5v12"/></svg><span>Product &amp; delivery plan</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Architecture</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/architecture/STACK.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4 3.5 8.5 12 13l8.5-4.5z"/><path d="m4.5 12.5 7.5 4 7.5-4"/></svg><span>Technology stack</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Decisions</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/adr/index.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg><span>ADR index</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0000-adr-template.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0000 Template</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0001-record-architecture-decisions.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0001 Record decisions</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0002-web-first-spa-rust-backend.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0002 Web-first + Rust</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0003-modular-monolith-cargo-workspace.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0003 Modular monolith</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0004-school-issued-identities-multi-tenant.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0004 School identities</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0005-chat-privacy-tiering.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0005 Chat privacy tiering</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0006-curated-finite-feed.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0006 Curated finite feed</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0007-credits-append-only-ledger.html" aria-current="page"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0007 Credits ledger</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0008-ai-gateway-prompt-packs.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0008 AI gateway</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0009-compute-hosting-gated-last.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0009 Compute gated last</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0010-tauri-desktop-shell.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0010 Tauri desktop shell</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Safety</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/threat-model/THREAT-MODEL.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6.2v5.6c0 4.2 2.9 7.4 7 8.7 4.1-1.3 7-4.5 7-8.7V6.2z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><span>Threat model</span></a></li>
+<li><a class="nav-link" href="../../docs/compliance/DPIA.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 4.5H7.5v15h9v-15H15"/><path d="M9.5 3.5h5v2.2h-5z"/><path d="m9.5 13 1.8 1.8 3.6-3.6"/></svg><span>DPIA skeleton</span></a></li>
+<li><a class="nav-link" href="../../docs/economics/CREDITS-MODEL.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="6.5" rx="6.5" ry="2.8"/><path d="M5.5 6.5v11c0 1.5 2.9 2.8 6.5 2.8s6.5-1.3 6.5-2.8v-11"/><path d="M5.5 12c0 1.5 2.9 2.8 6.5 2.8s6.5-1.3 6.5-2.8"/></svg><span>Credits economy</span></a></li>
+</ul>
+</div>
+    <div class="nav-group nav-group--foot">
+      <h2 class="nav-group__title">Repository</h2>
+      <ul class="nav-list">
+        <li><a class="nav-link nav-link--sub" href="https://github.com/movainc/movadesktop" target="_blank" rel="noopener noreferrer"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>GitHub <span aria-hidden="true">↗</span></span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <main class="content" id="content">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="crumb-sep" aria-hidden="true">/</span> <span>Decisions</span> <span class="crumb-sep" aria-hidden="true">/</span> <span aria-current="page">ADR-0007 Credits ledger</span></nav>
+<dl class="meta">
+<div class="meta-row"><dt>Status</dt><dd><span class="badge badge--ok">accepted</span></dd></div>
+<div class="meta-row"><dt>Date</dt><dd>2026-09-28</dd></div>
+<div class="meta-row"><dt>Deciders</dt><dd>engineering, product, sponsor</dd></div>
+<div class="meta-row"><dt>Affects</dt><dd><code>knoxus-ledger</code>, missions, shop, trades, compute billing, AI metering</dd></div>
+</dl>
+    <article class="prose">
+<h1 id="adr-0007-credits-as-an-append-only-double-entry-ledger-no-real-money">ADR-0007 — Credits as an append-only double-entry ledger; no real money</h1>
+<h2 id="context">Context<a class="anchor" href="#context" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p>The brief specifies a currency earned through activity (capped at ~30 credits/day), spendable on cosmetics, advertising, physical goods, AI credits and compute (2 credits/vCPU-hour, 0.4/GB-RAM-hour, 5/GB-VRAM-hour), with monitored peer trading and an investment simulation synced to real markets.</p>
+<p>Money systems attract fraud, and a mutable <code>balance</code> column makes every dispute unauditable and every race condition a duplicated spend. The &quot;investment&quot; feature also creates a compounding faucet that can silently defeat the daily cap if proceeds are spendable like earned credits. Finally, allowing credits to be bought with real money would convert play money into consumer purchases by minors.</p>
+<h2 id="decision">Decision<a class="anchor" href="#decision" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<ol>
+<li><strong>Append-only double-entry journal.</strong> Every debit and credit is an immutable entry with an idempotency key; account balances are derived by aggregation, never written. Corrections are compensating entries, never edits.</li>
+<li><strong>Exact arithmetic.</strong> <code>rust_decimal</code> (or integer minor units) only. No floats anywhere in the money path.</li>
+<li><strong>Grants are capped, not spends.</strong> The 30/day cap applies at grant time per account per UTC day, enforced server-side from real events. Mission completion is evaluated by the server; client claims are never trusted.</li>
+<li><strong>The investment pool is isolated.</strong> Proceeds land in a separate, bounded pool with its own spend ceiling, so compounding cannot buy unlimited compute. Market data must be licensed, delayed data is acceptable, and there is no IRL redemption, ever.</li>
+<li><strong>No real money.</strong> Credits cannot be purchased, gifted for cash, or redeemed for cash. Physical rewards are school-fulfilled prizes with a stock budget, not a storefront.</li>
+<li><strong>Trades are value-banded and monitored</strong>, with review thresholds for large transfers, and trade history visible to the school.</li>
+<li><strong>Compute and AI metering write to the same journal</strong>, so spend is one system with one audit trail, and budget circuit breakers become a ledger query.</li>
+</ol>
+<h2 id="consequences">Consequences<a class="anchor" href="#consequences" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<ul>
+<li><strong>Positive:</strong> every dispute is reconstructable from immutable history; double-spend and race bugs are designed out; the daily cap and the budget breakers are the same mechanism; the economy can be re-tuned by config (<code>economics/CREDITS-MODEL.md</code> §6) without a migration.</li>
+<li><strong>Negative / accepted cost:</strong> aggregation queries instead of a cached balance column (mitigate with periodic snapshots plus delta replay, and per-account serialisation on the journal head); more schema and more code than a <code>balance</code> integer.</li>
+<li><strong>Follow-up work:</strong> new-account zero state, in-flight idempotency, snapshot/replay tooling, ledger invariant tests (sum of entries is zero per transaction), and load tests on the hot path before Phase 5.</li>
+</ul>
+<h2 id="alternatives-considered">Alternatives considered<a class="anchor" href="#alternatives-considered" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Alternative</th><th scope="col">Why not</th></tr></thead>
+<tbody>
+<tr><td><code>balance</code> column updated in place</td><td>Races, no audit trail, disputes unresolvable, and computed balances are needed anyway for reporting</td></tr>
+<tr><td>Blockchain / on-chain tokens</td><td>Solves nothing here, adds cost, latency and legal exposure; this is bookkeeping</td></tr>
+<tr><td>No economy at all</td><td>Rejects a core part of the brief; the economy is also the mechanism that funds student compute</td></tr>
+<tr><td>Allow credit purchases with real money</td><td>Turns minors into paying consumers, adds consumer-law and app-store obligations, and breaks the fairness the cap exists to protect</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="compliance-safeguarding-note">Compliance / safeguarding note<a class="anchor" href="#compliance-safeguarding-note" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p>No money changes hands, so the gambling, consumer-credit and IAP exposure is avoided by construction. Randomised-reward mechanics (loot boxes) are prohibited by policy regardless of price, and trade monitoring doubles as a bullying and coercion detection surface for staff.</p>
+    </article>
+<nav class="pager" aria-label="Document navigation">
+<a class="pager-link pager-link--prev" rel="prev" href="../../docs/adr/0006-curated-finite-feed.html"><span class="pager-arrow" aria-hidden="true">←</span><span><span class="pager-label">Previous</span><span class="pager-title">ADR-0006 Curated finite feed</span></span></a>
+<a class="pager-link pager-link--next" rel="next" href="../../docs/adr/0008-ai-gateway-prompt-packs.html"><span><span class="pager-label">Next</span><span class="pager-title">ADR-0008 AI gateway</span></span><span class="pager-arrow" aria-hidden="true">→</span></a>
+</nav>
+    <footer class="page-foot">
+      <p>Source of truth: <code>docs/adr/0007-credits-append-only-ledger.md</code> · generated by <code>site/build.mjs</code> · status: planning · pre-code</p>
+      <p><a href="#content">Back to top</a></p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="On this page">
+    <h2 class="toc-title">On this page</h2>
+<ul class="toc-list">
+<li class="toc-l2"><a href="#context">Context</a></li>
+<li class="toc-l2"><a href="#decision">Decision</a></li>
+<li class="toc-l2"><a href="#consequences">Consequences</a></li>
+<li class="toc-l2"><a href="#alternatives-considered">Alternatives considered</a></li>
+<li class="toc-l2"><a href="#compliance-safeguarding-note">Compliance / safeguarding note</a></li>
+</ul>
+  </aside>
+</div>
+<dialog class="searchdlg" id="search" aria-label="Search documentation">
+  <div class="search-box">
+    <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></svg>
+    <label class="visually-hidden" for="search-input">Search documentation</label>
+    <input type="search" id="search-input" placeholder="Search headings and text…" autocomplete="off" aria-controls="search-results" aria-describedby="search-status">
+    <button class="search-close" type="button" data-search-close>Close</button>
+  </div>
+  <p class="search-status" id="search-status" role="status" aria-live="polite"></p>
+  <ul class="search-results" id="search-results"></ul>
+</dialog>
+<script src="../../assets/search-index.js" defer></script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

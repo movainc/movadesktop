@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en-AU" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>ADR-0005 Chat privacy tiering · Knoxus Engineering documentation</title>
+<meta name="description" content="Engineering documentation">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<script>(function(){try{var t=localStorage.getItem('knoxus-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
+</head>
+<body data-root="../../">
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="sidebar" aria-label="Show navigation">
+    <span class="ic-bar" aria-hidden="true"></span>
+  </button>
+  <a class="brand" href="../../index.html">
+    <span class="brand-mark" aria-hidden="true">K</span>
+    <span class="brand-text"><strong>Knoxus</strong><span>Engineering documentation</span></span>
+  </a>
+  <button class="search-trigger" type="button" data-search-open aria-haspopup="dialog">
+    <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></svg><span>Search docs</span><kbd aria-hidden="true">/</kbd>
+  </button>
+  <button class="icon-btn theme-btn" type="button" data-theme-toggle aria-label="Switch colour theme">
+    <svg class="ic ic--sm theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg><svg class="ic ic--sm theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5"/></svg>
+  </button>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar" aria-label="Documentation sections">
+<div class="nav-group">
+<h2 class="nav-group__title">Overview</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/index.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 11.5 12 4.2l8.5 7.3"/><path d="M6 10.4V19.5h12V10.4"/></svg><span>Documentation index</span></a></li>
+<li><a class="nav-link" href="../../docs/PLAN.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6.5v12l5-2 5 2 6-2.5v-12L14 6.5l-5-2z"/><path d="M9 4.5v12"/><path d="M14 6.5v12"/></svg><span>Product &amp; delivery plan</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Architecture</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/architecture/STACK.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4 3.5 8.5 12 13l8.5-4.5z"/><path d="m4.5 12.5 7.5 4 7.5-4"/></svg><span>Technology stack</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Decisions</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/adr/index.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg><span>ADR index</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0000-adr-template.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0000 Template</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0001-record-architecture-decisions.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0001 Record decisions</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0002-web-first-spa-rust-backend.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0002 Web-first + Rust</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0003-modular-monolith-cargo-workspace.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0003 Modular monolith</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0004-school-issued-identities-multi-tenant.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0004 School identities</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0005-chat-privacy-tiering.html" aria-current="page"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0005 Chat privacy tiering</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0006-curated-finite-feed.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0006 Curated finite feed</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0007-credits-append-only-ledger.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0007 Credits ledger</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0008-ai-gateway-prompt-packs.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0008 AI gateway</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0009-compute-hosting-gated-last.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0009 Compute gated last</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0010-tauri-desktop-shell.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0010 Tauri desktop shell</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Safety</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/threat-model/THREAT-MODEL.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6.2v5.6c0 4.2 2.9 7.4 7 8.7 4.1-1.3 7-4.5 7-8.7V6.2z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><span>Threat model</span></a></li>
+<li><a class="nav-link" href="../../docs/compliance/DPIA.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 4.5H7.5v15h9v-15H15"/><path d="M9.5 3.5h5v2.2h-5z"/><path d="m9.5 13 1.8 1.8 3.6-3.6"/></svg><span>DPIA skeleton</span></a></li>
+<li><a class="nav-link" href="../../docs/economics/CREDITS-MODEL.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="6.5" rx="6.5" ry="2.8"/><path d="M5.5 6.5v11c0 1.5 2.9 2.8 6.5 2.8s6.5-1.3 6.5-2.8v-11"/><path d="M5.5 12c0 1.5 2.9 2.8 6.5 2.8s6.5-1.3 6.5-2.8"/></svg><span>Credits economy</span></a></li>
+</ul>
+</div>
+    <div class="nav-group nav-group--foot">
+      <h2 class="nav-group__title">Repository</h2>
+      <ul class="nav-list">
+        <li><a class="nav-link nav-link--sub" href="https://github.com/movainc/movadesktop" target="_blank" rel="noopener noreferrer"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>GitHub <span aria-hidden="true">↗</span></span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <main class="content" id="content">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="crumb-sep" aria-hidden="true">/</span> <span>Decisions</span> <span class="crumb-sep" aria-hidden="true">/</span> <span aria-current="page">ADR-0005 Chat privacy tiering</span></nav>
+<dl class="meta">
+<div class="meta-row"><dt>Status</dt><dd><span class="badge badge--ok">accepted</span></dd></div>
+<div class="meta-row"><dt>Date</dt><dd>2026-09-28</dd></div>
+<div class="meta-row"><dt>Deciders</dt><dd>product, engineering, sponsor, counsel (pending review)</dd></div>
+<div class="meta-row"><dt>Affects</dt><dd><code>knoxus-api</code>, <code>knoxus-moderation</code>, chat schema, retention, voice</dd></div>
+</dl>
+    <article class="prose">
+<h1 id="adr-0005-channel-tiered-privacy-disclosed-monitoring-no-e2ee-for-under-16s">ADR-0005 — Channel-tiered privacy: disclosed monitoring, no E2EE for under-16s</h1>
+<h2 id="context">Context<a class="anchor" href="#context" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p>The brief contains two mutually exclusive proposals. Proposal A: the school monitors all chats, teachers monitor some, AI replies on the teacher&#39;s behalf, parents may be contacted, and students get &quot;no privacy&quot;. Proposal B: end-to-end encrypted chats that teachers cannot read, with AI acting as a regulator for NSFW material, slurs and drug references, including across multiple messages.</p>
+<p>Proposal B is not implementable as described. Server-side detection across multiple messages requires plaintext; client-side detection is defeated by a modified client within an hour. Claiming E2EE while also promising detection produces the worst outcome available: a strong privacy claim the platform cannot honour, matched with a safety claim it cannot deliver, in a service used by children.</p>
+<p>Separately, covert monitoring of minors is both an ethical and a legal hazard: children hold privacy rights, and a service that watches them without telling them is exposed in a way a transparent one is not.</p>
+<h2 id="decision">Decision<a class="anchor" href="#decision" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p><strong>Privacy is tiered by channel, not by platform</strong>, and monitoring is never covert. Every channel carries an explicit visibility class, surfaced in the UI as a persistent banner.</p>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Class</th><th scope="col">Example</th><th scope="col">Readable by</th><th scope="col">AI</th><th scope="col">Retention</th></tr></thead>
+<tbody>
+<tr><td><code>Public</code></td><td>School notice, community channel</td><td>All members of scope</td><td>Prompt-pack replies, labelled</td><td>Normal</td></tr>
+<tr><td><code>Supervised</code></td><td>Staff↔student, staff↔parent</td><td>Participants, school admins; guardian on request</td><td>Disclosed assistant only</td><td>Safeguarding record</td></tr>
+<tr><td><code>Private</code></td><td>Peer DM, private community</td><td>Participants <strong>and</strong> server-side classifiers; human review requires <strong>dual control + logged justification</strong></td><td>Auto-escalation to a human on harm signals</td><td>Bounded, then purged</td></tr>
+<tr><td><code>Escalation</code></td><td>Safety triage</td><td>Human counsellor only</td><td>Triage, never autonomous action</td><td>Safeguarding record</td></tr>
+</tbody>
+</table>
+</div>
+<p>Supporting invariants:</p>
+<ol>
+<li><strong>No covert monitoring.</strong> Students are told which channels are visible to staff, in the channel itself. This is the difference between lawful oversight and surveillance.</li>
+<li><strong>No 1:1 adult↔minor voice/video</strong> channel. Voice requires a public/community context with at least one other participant present.</li>
+<li><strong>No voice or video recording</strong>, at all, by anyone, including teachers. In NSW, recording a private conversation without consent is an offence; a minor cannot validly consent to their own surveillance on a guardian&#39;s behalf.</li>
+<li><strong>Staff access to <code>Private</code> content</strong> is exceptional, requires a second approver and a logged reason, and notifies the student that a review occurred (notification may be deferred only where a named safeguarding lead authorises it in writing).</li>
+<li><strong>AI never acts alone</strong>: no autonomous suspension, no autonomous reporting, no autonomous contact with a student or guardian. AI produces a signal; a named human acts.</li>
+<li><strong>True E2EE is offered only to 16+ / alumni accounts</strong>, where the promise can be honoured, and is never used for channels the school has a duty to oversee.</li>
+</ol>
+<h2 id="consequences">Consequences<a class="anchor" href="#consequences" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<ul>
+<li><strong>Positive:</strong> implementable, honest, and defensible to guardians and to a regulator; the AI-reply and multi-message-detection features become possible at all; the notification guarantee turns an invisible capability into a documented policy.</li>
+<li><strong>Negative / accepted cost:</strong> students who want genuine privacy will not get it here while under 16, which will be unpopular and must be communicated by the school, not discovered by students. Dual-control review adds friction and needs a roster of approvers.</li>
+<li><strong>Follow-up work:</strong> visibility class in the schema and in every API response; banner component; dual-control review UI and audit trail; retention jobs; escalation routing to a named human with an SLA; guardian consent flow; notification-on-review mechanism.</li>
+</ul>
+<h2 id="alternatives-considered">Alternatives considered<a class="anchor" href="#alternatives-considered" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Alternative</th><th scope="col">Why not</th></tr></thead>
+<tbody>
+<tr><td>Proposal B as written (E2EE + server-side detection)</td><td>Technically incoherent; detection cannot work on ciphertext without defeating the purpose</td></tr>
+<tr><td>E2EE with client-side only detection</td><td>Trivially bypassed by a modified client; creates a false safety claim</td></tr>
+<tr><td>Covert full monitoring of all channels</td><td>Legally and ethically exposed with minors; destroys the product&#39;s credibility the moment it is discovered</td></tr>
+<tr><td>No monitoring at all</td><td>Incompatible with the school&#39;s safeguarding duties and mandatory reporting obligations</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="compliance-safeguarding-note">Compliance / safeguarding note<a class="anchor" href="#compliance-safeguarding-note" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p>This ADR is the central compliance artefact and <strong>requires written review by counsel and the school&#39;s safeguarding lead before Phase 3 begins</strong>. Questions for counsel are itemised in <a href="../compliance/DPIA.html">../compliance/DPIA.md</a> §9. Owner: safeguarding lead, with engineering maintaining the enforcement mechanisms.</p>
+    </article>
+<nav class="pager" aria-label="Document navigation">
+<a class="pager-link pager-link--prev" rel="prev" href="../../docs/adr/0004-school-issued-identities-multi-tenant.html"><span class="pager-arrow" aria-hidden="true">←</span><span><span class="pager-label">Previous</span><span class="pager-title">ADR-0004 School identities</span></span></a>
+<a class="pager-link pager-link--next" rel="next" href="../../docs/adr/0006-curated-finite-feed.html"><span><span class="pager-label">Next</span><span class="pager-title">ADR-0006 Curated finite feed</span></span><span class="pager-arrow" aria-hidden="true">→</span></a>
+</nav>
+    <footer class="page-foot">
+      <p>Source of truth: <code>docs/adr/0005-chat-privacy-tiering.md</code> · generated by <code>site/build.mjs</code> · status: planning · pre-code</p>
+      <p><a href="#content">Back to top</a></p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="On this page">
+    <h2 class="toc-title">On this page</h2>
+<ul class="toc-list">
+<li class="toc-l2"><a href="#context">Context</a></li>
+<li class="toc-l2"><a href="#decision">Decision</a></li>
+<li class="toc-l2"><a href="#consequences">Consequences</a></li>
+<li class="toc-l2"><a href="#alternatives-considered">Alternatives considered</a></li>
+<li class="toc-l2"><a href="#compliance-safeguarding-note">Compliance / safeguarding note</a></li>
+</ul>
+  </aside>
+</div>
+<dialog class="searchdlg" id="search" aria-label="Search documentation">
+  <div class="search-box">
+    <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></svg>
+    <label class="visually-hidden" for="search-input">Search documentation</label>
+    <input type="search" id="search-input" placeholder="Search headings and text…" autocomplete="off" aria-controls="search-results" aria-describedby="search-status">
+    <button class="search-close" type="button" data-search-close>Close</button>
+  </div>
+  <p class="search-status" id="search-status" role="status" aria-live="polite"></p>
+  <ul class="search-results" id="search-results"></ul>
+</dialog>
+<script src="../../assets/search-index.js" defer></script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

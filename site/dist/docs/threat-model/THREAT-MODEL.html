@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en-AU" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Threat model · Knoxus Engineering documentation</title>
+<meta name="description" content="Assets, actors, trust boundaries, STRIDE, 18 abuse cases, the red-team suite and residual risk.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<script>(function(){try{var t=localStorage.getItem('knoxus-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
+</head>
+<body data-root="../../">
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="sidebar" aria-label="Show navigation">
+    <span class="ic-bar" aria-hidden="true"></span>
+  </button>
+  <a class="brand" href="../../index.html">
+    <span class="brand-mark" aria-hidden="true">K</span>
+    <span class="brand-text"><strong>Knoxus</strong><span>Engineering documentation</span></span>
+  </a>
+  <button class="search-trigger" type="button" data-search-open aria-haspopup="dialog">
+    <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></svg><span>Search docs</span><kbd aria-hidden="true">/</kbd>
+  </button>
+  <button class="icon-btn theme-btn" type="button" data-theme-toggle aria-label="Switch colour theme">
+    <svg class="ic ic--sm theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg><svg class="ic ic--sm theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5"/></svg>
+  </button>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar" aria-label="Documentation sections">
+<div class="nav-group">
+<h2 class="nav-group__title">Overview</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/index.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 11.5 12 4.2l8.5 7.3"/><path d="M6 10.4V19.5h12V10.4"/></svg><span>Documentation index</span></a></li>
+<li><a class="nav-link" href="../../docs/PLAN.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6.5v12l5-2 5 2 6-2.5v-12L14 6.5l-5-2z"/><path d="M9 4.5v12"/><path d="M14 6.5v12"/></svg><span>Product &amp; delivery plan</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Architecture</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/architecture/STACK.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4 3.5 8.5 12 13l8.5-4.5z"/><path d="m4.5 12.5 7.5 4 7.5-4"/></svg><span>Technology stack</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Decisions</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/adr/index.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg><span>ADR index</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0000-adr-template.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0000 Template</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0001-record-architecture-decisions.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0001 Record decisions</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0002-web-first-spa-rust-backend.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0002 Web-first + Rust</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0003-modular-monolith-cargo-workspace.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0003 Modular monolith</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0004-school-issued-identities-multi-tenant.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0004 School identities</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0005-chat-privacy-tiering.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0005 Chat privacy tiering</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0006-curated-finite-feed.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0006 Curated finite feed</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0007-credits-append-only-ledger.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0007 Credits ledger</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0008-ai-gateway-prompt-packs.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0008 AI gateway</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0009-compute-hosting-gated-last.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0009 Compute gated last</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0010-tauri-desktop-shell.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0010 Tauri desktop shell</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Safety</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/threat-model/THREAT-MODEL.html" aria-current="page"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6.2v5.6c0 4.2 2.9 7.4 7 8.7 4.1-1.3 7-4.5 7-8.7V6.2z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><span>Threat model</span></a></li>
+<li><a class="nav-link" href="../../docs/compliance/DPIA.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 4.5H7.5v15h9v-15H15"/><path d="M9.5 3.5h5v2.2h-5z"/><path d="m9.5 13 1.8 1.8 3.6-3.6"/></svg><span>DPIA skeleton</span></a></li>
+<li><a class="nav-link" href="../../docs/economics/CREDITS-MODEL.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="6.5" rx="6.5" ry="2.8"/><path d="M5.5 6.5v11c0 1.5 2.9 2.8 6.5 2.8s6.5-1.3 6.5-2.8v-11"/><path d="M5.5 12c0 1.5 2.9 2.8 6.5 2.8s6.5-1.3 6.5-2.8"/></svg><span>Credits economy</span></a></li>
+</ul>
+</div>
+    <div class="nav-group nav-group--foot">
+      <h2 class="nav-group__title">Repository</h2>
+      <ul class="nav-list">
+        <li><a class="nav-link nav-link--sub" href="https://github.com/movainc/movadesktop" target="_blank" rel="noopener noreferrer"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>GitHub <span aria-hidden="true">↗</span></span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <main class="content" id="content">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="crumb-sep" aria-hidden="true">/</span> <span>Safety</span> <span class="crumb-sep" aria-hidden="true">/</span> <span aria-current="page">Threat model</span></nav>
+
+    <article class="prose">
+<h1 id="threat-model-knoxus">Threat model — Knoxus</h1>
+<p>Status: <strong>draft for review.</strong> Method: asset-led, STRIDE-assisted, with an abuse-case register that is maintained as a test suite (§7). This document is a living artefact: every incident adds a case.</p>
+<p>Related: <a href="../PLAN.html">../PLAN.md</a> · <a href="../adr/0005-chat-privacy-tiering.html">../adr/0005-chat-privacy-tiering.md</a> · <a href="../compliance/DPIA.html">../compliance/DPIA.md</a></p>
+<hr>
+<h2 id="1-scope">1. Scope<a class="anchor" href="#1-scope" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p>In scope: the web/PWA client, the desktop shell, the Rust back-end, chat and voice, the media pipeline, the AI gateway, the credits ledger, the compute control plane, the CLI, and the <code>knoxi!</code> connector. Out of scope for this revision: the school&#39;s own identity provider and network, and the third parties&#39; internal systems (their guarantees are tracked as dependencies, not threats).</p>
+<p>The distinguishing property of this system: <strong>the users are children, the operator is their school, and the platform&#39;s most sensitive capability is its ability to reveal what children say to each other.</strong> Almost every high-severity threat below is a variation on that theme.</p>
+<h2 id="2-assets">2. Assets<a class="anchor" href="#2-assets" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">#</th><th scope="col">Asset</th><th scope="col">Why it matters</th></tr></thead>
+<tbody>
+<tr><td>A1</td><td>Peer-chat content</td><td>Disclosed to staff only under policy; leakage destroys trust and can endanger a student</td></tr>
+<tr><td>A2</td><td>Staff↔student and staff↔parent records</td><td>Safeguarding evidence; retention obligations</td></tr>
+<tr><td>A3</td><td>Student identity &amp; enrolment data</td><td>Minors&#39; personal information; identity theft and doxxing</td></tr>
+<tr><td>A4</td><td>Guardian contact details</td><td>Direct route into a family</td></tr>
+<tr><td>A5</td><td>Moderation signals &amp; reports</td><td>Reveal who reported whom; retaliation risk</td></tr>
+<tr><td>A6</td><td>AI prompts, packs &amp; outputs</td><td>Prompt injection, unsafe output at scale</td></tr>
+<tr><td>A7</td><td>Credits ledger &amp; inventory</td><td>Fraud, laundering, coercion, bullying leverage</td></tr>
+<tr><td>A8</td><td>Student compute &amp; hosted content</td><td>Illegal content hosting, abuse of the school&#39;s name and network</td></tr>
+<tr><td>A9</td><td>Audit log</td><td>The evidence that oversight was lawful and minimal</td></tr>
+<tr><td>A10</td><td>Authentication &amp; session state</td><td>Account takeover of a minor, impersonation of staff</td></tr>
+<tr><td>A11</td><td>Voice/screen-share sessions</td><td>Live exposure; unrecordable by policy</td></tr>
+<tr><td>A12</td><td>Tenant-subdomain and DNS zone</td><td>Takeover, phishing under the school&#39;s domain</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="3-actors">3. Actors<a class="anchor" href="#3-actors" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Actor</th><th scope="col">Capability</th><th scope="col">Motivation</th></tr></thead>
+<tbody>
+<tr><td>Curious student</td><td>Full client access, can modify the client</td><td>Curiosity, status, &quot;can I get around it&quot;</td></tr>
+<tr><td>Malicious student</td><td>Scripts, proxies, alt-account attempts</td><td>Harm a peer, evade moderation, free compute</td></tr>
+<tr><td>Predatory adult inside the school</td><td>Staff access, legitimacy</td><td>Grooming, coercion</td></tr>
+<tr><td>Predatory adult outside</td><td>No account; may obtain one via a student</td><td>Contact with minors</td></tr>
+<tr><td>Misusing staff member</td><td>Supervisory access</td><td>Curiosity about a student&#39;s chats</td></tr>
+<tr><td>External attacker</td><td>Internet-facing surface</td><td>Data theft, extortion, vandalism</td></tr>
+<tr><td>Well-intentioned-but-wrong staff</td><td>Config/prompt access</td><td>Poor AI config, over-broad visibility request</td></tr>
+<tr><td>Third-party provider</td><td>Processes content</td><td>Retention/training misuse; breach</td></tr>
+<tr><td>School IT</td><td>Infrastructure access</td><td>Pragmatic shortcuts that break privacy guarantees</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="4-trust-boundaries">4. Trust boundaries<a class="anchor" href="#4-trust-boundaries" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">#</th><th scope="col">Boundary</th><th scope="col">Assumption</th><th scope="col">Enforcement</th></tr></thead>
+<tbody>
+<tr><td>B1</td><td>Untrusted student device / client ↔ API</td><td>The client is hostile; it can be modified, and it will lie</td><td>All authorisation, moderation and metering re-evaluated server-side; no client-side trust</td></tr>
+<tr><td>B2</td><td>Browser frame ↔ third-party iframe</td><td>Embeds are hostile by default</td><td><code>sandbox</code>, strict CSP, allowlisted domains, no shared cookies/storage</td></tr>
+<tr><td>B3</td><td>Platform ↔ third-party AI/media/telephony</td><td>Provider sees whatever we send</td><td>Redaction, minimum-necessary content, DPA + no-training terms, per-tenant policy</td></tr>
+<tr><td>B4</td><td>Student workload ↔ platform services</td><td>The workload is hostile and may be illegal</td><td>Network deny-by-default, no path to platform services or the platform database</td></tr>
+<tr><td>B5</td><td>Staff user ↔ peer-chat content</td><td>Legitimate need is narrow and must be evidenced</td><td>Dual control, logged justification, notification, review audit</td></tr>
+<tr><td>B6</td><td>School IT ↔ production access</td><td>Needs infrastructure access without reading content</td><td>Infrastructure creds cannot decrypt or query message bodies; content reads go through the audited app path</td></tr>
+<tr><td>B7</td><td>Tenant ↔ tenant</td><td>Schools are separate trust domains</td><td><code>tenant_id</code> on every row, composite keys, tenancy guard tests in CI</td></tr>
+<tr><td>B8</td><td><code>knoxi!</code> ↔ platform</td><td>Source system is authoritative but not public</td><td>Read-only adapter, provenance, review-before-publish, no write-back</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="5-stride-pass-abbreviated">5. STRIDE pass (abbreviated)<a class="anchor" href="#5-stride-pass-abbreviated" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Category</th><th scope="col">Threat</th><th scope="col">Control</th></tr></thead>
+<tbody>
+<tr><td>Spoofing</td><td>Student impersonates staff; adult impersonates a student</td><td>SSO-only identity, per-role claim mapping, no impersonation feature, staff actions re-authenticated for sensitive operations</td></tr>
+<tr><td>Spoofing</td><td>AI output presented as a person</td><td>Mandatory disclosure metadata + visible badge; no AI avatar of a real person</td></tr>
+<tr><td>Tampering</td><td>Ledger tampering; mission claims</td><td>Append-only journal, server-side mission evaluation, idempotency keys</td></tr>
+<tr><td>Tampering</td><td>Prompt pack edited to remove guardrails</td><td>Versioning + lint + evals + kill switch; activation is a reviewed change</td></tr>
+<tr><td>Repudiation</td><td>Staff denies viewing a chat</td><td>Mandatory audit entry with actor, reason, approver, timestamp; entries immutable</td></tr>
+<tr><td>Information disclosure</td><td>Peer-chat leakage to staff, other students or vendors</td><td>Channel visibility classes; dual control; redaction before AI; no analytics SDKs; encryption at rest with key separation</td></tr>
+<tr><td>Information disclosure</td><td>Cross-tenant leakage</td><td>Tenancy guard tests; composite FKs; no cross-tenant joins</td></tr>
+<tr><td>Information disclosure</td><td>Moderation signals reveal reporters</td><td>Reporter identity visible only to the safeguarding lead; never in community-visible outcomes</td></tr>
+<tr><td>Denial of service</td><td>Student compute exhausts shared capacity; budget exhaustion</td><td>Quotas, pre-emptible instances, per-student and school-wide circuit breakers, backpressure on chat fan-out</td></tr>
+<tr><td>Elevation of privilege</td><td>Container escape from student workload</td><td>Sandboxed runtimes (microVM/gVisor class), no sudo, read-only base, seccomp, no host mounts</td></tr>
+<tr><td>Elevation of privilege</td><td>SSRF via link preview / iframe / connector</td><td>Metadata fetch through a hardened resolver, allowlist, no access to link-local or internal ranges</td></tr>
+<tr><td>Elevation of privilege</td><td>Stored XSS via profile cosmetics/fonts</td><td>Vetted asset catalogue, no raw CSS/SVG, strict CSP, sanitised rich text everywhere</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="6-abuse-case-register">6. Abuse-case register<a class="anchor" href="#6-abuse-case-register" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p>Ordered by severity. Each case becomes an automated or scripted test in §7.</p>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">#</th><th scope="col">Case</th><th scope="col">Path</th><th scope="col">Impact</th><th scope="col">Controls</th><th scope="col">Detection</th></tr></thead>
+<tbody>
+<tr><td>AC-01</td><td>Grooming via peer DM or 1:1 channel</td><td>Adult or older student escalates intimacy over time</td><td>Severe</td><td>No 1:1 adult↔minor voice; no strangers on-platform (ADR-0004); conversation-window classifiers; escalation to a named human; guardian visibility for staff channels</td><td>Multi-message signal scoring; velocity and time-of-day anomalies; age-gap pairing alerts</td></tr>
+<tr><td>AC-02</td><td>Staff member reads a student&#39;s private chats out of curiosity</td><td>Legitimate access misused</td><td>Severe (trust, legal)</td><td>Dual control, reason codes, student notification, immutable audit</td><td>Access-pattern review; quarterly audit review of approvals</td></tr>
+<tr><td>AC-03</td><td>CSAM uploaded or hosted (media upload or student compute)</td><td>Upload path or hosting tier</td><td>Severe (illegal)</td><td>Hash-match detection with escalation; compute egress restrictions and AUP; takedown SLA; no staff viewing</td><td>Vendor hash alerts; abuse reports; hosting content signals</td></tr>
+<tr><td>AC-04</td><td>Non-consensual intimate imagery / deepfake of a student</td><td>Upload or AI video generation using a likeness</td><td>Severe</td><td>Consent registry for likeness use; clip quotas; provenance metadata; pre-publish moderation; takedown path</td><td>Likeness-match detection; report flow; generation audit linked to a student account</td></tr>
+<tr><td>AC-05</td><td>Self-harm or suicide-risk disclosure</td><td>Any channel</td><td>Severe</td><td>Auto-escalation to a human on signal; crisis resources; no autonomous AI response; on-call roster</td><td>Classifier + pattern detection; escalation SLA monitoring</td></tr>
+<tr><td>AC-06</td><td>Drug/vape solicitation and coordination</td><td>Peer DM or private community</td><td>High</td><td>Multi-message detection; escalation to a human; private communities remain server-visible (ADR-0005)</td><td>Signal scoring; report flow; community-level anomaly detection</td></tr>
+<tr><td>AC-07</td><td>Bullying, exclusion and pile-ons</td><td>Communities, comments, reactions</td><td>High</td><td>No public like/follower counts; private reactions; report + block; community moderation duties</td><td>Report clustering; message-velocity spikes; repeated-target heuristics</td></tr>
+<tr><td>AC-08</td><td>Coerced trading / credits extortion</td><td>Ledger, trades</td><td>High</td><td>Value bands, review thresholds, trade history visible to the school, item-only gifting</td><td>Ledger anomaly detection; trade-pattern review</td></tr>
+<tr><td>AC-09</td><td>Alt-account farming to multiply compute</td><td>Signup or identity reuse</td><td>Medium-high (cost)</td><td>SSO-bound single identity; device correlation; grant cap per account per day</td><td>Duplicate-identity flags; correlated device signals</td></tr>
+<tr><td>AC-10</td><td>Prompts jailbroken to produce unsafe output at scale</td><td>Teacher prompt packs</td><td>High</td><td>Prompt lint + eval suite + jailbreak tests as CI gates; per-tenant kill switch; disclosure labelling</td><td>Eval failures block activation; output sampling; incident review</td></tr>
+<tr><td>AC-11</td><td>Prompt injection via user content (message or uploaded doc)</td><td>Content reaching the AI gateway</td><td>Medium-high</td><td>Treat all user content as untrusted data, never instructions; tool/function allowlist; no autonomous actions</td><td>Injection-canary tests in the eval suite</td></tr>
+<tr><td>AC-12</td><td>Student compute used to host phishing or a proxy</td><td>Hosting tier</td><td>High (school&#39;s reputation, network)</td><td>Egress allowlist, no persistent outbound, isolation, abuse detection, kill switch</td><td>Egress anomaly detection; external abuse reports; CPU/mining patterns</td></tr>
+<tr><td>AC-13</td><td>Stored XSS via profile cosmetics, fonts or rich text</td><td>Profile editing</td><td>High</td><td>Vetted asset catalogue, no raw CSS/SVG, sanitised rich text, strict CSP</td><td>CSP violation reporting; upload scanning</td></tr>
+<tr><td>AC-14</td><td>SSRF via link preview, iframe builder or the <code>knoxi!</code> connector</td><td>Metadata fetch paths</td><td>High</td><td>Hardened resolver, allowlist, no link-local/internal ranges, response size and type limits</td><td>Outbound request logging; allowlist denials</td></tr>
+<tr><td>AC-15</td><td>Tenant-subdomain takeover / phishing under <code>*.knoxus.au</code></td><td>DNS and cert issuance</td><td>High</td><td>Reserved names, ownership verification before issuance, automated ACME, monitors on DNS records</td><td>Certificate transparency monitoring; DNS drift alerts</td></tr>
+<tr><td>AC-16</td><td>Enrolment data exfiltration by an insider or external attacker</td><td>API, DB, exports</td><td>Severe</td><td>Least privilege, tenancy guards, encryption at rest with key separation, export audit, no bulk export without dual control</td><td>Anomalous query volume alerts; export audit review</td></tr>
+<tr><td>AC-17</td><td>Parent monitors a peer chat beyond consent</td><td>Guardian visibility feature</td><td>Medium</td><td>Student opt-in required for peer-chat oversight; guardians see staff channels by default only</td><td>Consent-state enforcement; access audit</td></tr>
+<tr><td>AC-18</td><td>Voice session recorded by a participant</td><td>Any VC</td><td>High (illegal in some cases)</td><td>Platform does not record and does not provide recording; clear on-screen state; terms + reporting path</td><td>Impossible to detect platform-side — treat as a physical/behavioural risk, handle via policy</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="7-red-team-suite-ci-from-phase-1">7. Red-team suite (CI, from Phase 1)<a class="anchor" href="#7-red-team-suite-ci-from-phase-1" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p>Scripted attempts that must all fail. Booking them as tests is the only way these guarantees survive contact with deadlines.</p>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Test</th><th scope="col">Must observe</th></tr></thead>
+<tbody>
+<tr><td>Cross-tenant read of any resource</td><td>404/403, and a tenancy violation logged</td></tr>
+<tr><td>Student fetches a <code>Private</code> message they are not a participant of</td><td>403, no partial payload, audit entry</td></tr>
+<tr><td>Staff reads <code>Private</code> content without a second approver</td><td>403, attempt recorded</td></tr>
+<tr><td>Modified client submits an unmoderated post / fake mission completion / forged credit grant</td><td>Rejected server-side; grant evaluated from real events only</td></tr>
+<tr><td>Client sets its own <code>tenant_id</code>, role, or visibility class</td><td>Ignored; server derives from the session</td></tr>
+<tr><td>Student workload attempts egress to the internet, to platform services, to the cloud metadata endpoint</td><td>Denied and alerted</td></tr>
+<tr><td>Student workload attempts to disable its idle watchdog or exceed its quota</td><td>Denied by the control plane; instance terminated</td></tr>
+<tr><td>Link preview / iframe / connector pointed at internal or link-local addresses</td><td>Blocked by resolver</td></tr>
+<tr><td>Profile cosmetics attempt CSS/SVG/attribute injection</td><td>Sanitised; CSP violation reported</td></tr>
+<tr><td>Prompt pack containing injection payload or unsafe instruction attempts activation</td><td>Blocked by lint/eval; not activatable</td></tr>
+<tr><td>Invite link reused, expired, or used from another tenant</td><td>Rejected</td></tr>
+<tr><td>Video generation requested with an unconsented likeness</td><td>Blocked, request audited</td></tr>
+<tr><td>Ledger: double-spend, negative balance, concurrent spends on one account</td><td>One succeeds, one fails with a clear error; journal remains balanced</td></tr>
+<tr><td>Session replay after logout / token theft simulation</td><td>Session invalidated; refresh rotation detected</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="8-controls-summary">8. Controls summary<a class="anchor" href="#8-controls-summary" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p><strong>Preventive:</strong> SSO-only identity · least-privilege roles · channel visibility classes · dual control · pre-publish moderation · prompt lint and evals · network deny-by-default for workloads · vetted asset catalogue · strict CSP · consent registry for likeness · budgets and quotas.</p>
+<p><strong>Detective:</strong> conversation-window classifiers · escalation SLA monitoring · audit review of content access · ledger anomaly detection · egress and CPU anomaly detection · certificate transparency monitoring · report clustering.</p>
+<p><strong>Corrective:</strong> takedown and suspension flows with a documented SLA · kill switches (AI per tenant, compute globally) · incident response runbook with named owners · notification templates for students, guardians and the school.</p>
+<p><strong>Observability promise:</strong> enough telemetry to prove oversight was minimal and logged, and <strong>no</strong> third-party analytics or ad SDKs on any student surface.</p>
+<h2 id="9-residual-and-accepted-risks">9. Residual and accepted risks<a class="anchor" href="#9-residual-and-accepted-risks" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Risk</th><th scope="col">Why accepted</th><th scope="col">Mitigation</th></tr></thead>
+<tbody>
+<tr><td>A participant records a voice session with their own software</td><td>The platform cannot prevent client-side capture</td><td>Clear UI state, terms, reporting path, school policy</td></tr>
+<tr><td>A determined student routes around moderation via an external app</td><td>Out of platform control</td><td>The product is a <em>replacement</em>, not a cage; measure adoption, not enforcement</td></tr>
+<tr><td>False positives and false negatives in classifiers</td><td>Statistical systems are imperfect</td><td>Human-in-the-loop for every consequential action; tune thresholds with pilot data; never punish on AI alone</td></tr>
+<tr><td>Staff-time cost of dual-control reviews</td><td>Real operational load</td><td>Narrow the population of approvers; make reasons one tap; review the policy quarterly</td></tr>
+<tr><td>SSO outage takes the platform offline</td><td>Deliberate trade for anti-abuse and safety</td><td>Documented break-glass path, logged and time-boxed</td></tr>
+<tr><td>Student compute carries irreducible abuse risk</td><td>Any hosting does</td><td>Keep it last, gated, egress-restricted, and budget-capped (ADR-0009)</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="10-maintenance">10. Maintenance<a class="anchor" href="#10-maintenance" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<ul>
+<li>Every incident and every near-miss adds an abuse case here and a test in §7.</li>
+<li>Reviewed at each phase gate, and whenever a new third party, channel class, or AI capability is added — those three changes are the ones that historically invalidate a threat model.</li>
+<li>This document and <a href="../compliance/DPIA.html">../compliance/DPIA.md</a> are read together: the threat model says what can go wrong, the DPIA says why the processing is justified anyway.</li>
+</ul>
+    </article>
+<nav class="pager" aria-label="Document navigation">
+<a class="pager-link pager-link--prev" rel="prev" href="../../docs/adr/0010-tauri-desktop-shell.html"><span class="pager-arrow" aria-hidden="true">←</span><span><span class="pager-label">Previous</span><span class="pager-title">ADR-0010 Tauri desktop shell</span></span></a>
+<a class="pager-link pager-link--next" rel="next" href="../../docs/compliance/DPIA.html"><span><span class="pager-label">Next</span><span class="pager-title">DPIA skeleton</span></span><span class="pager-arrow" aria-hidden="true">→</span></a>
+</nav>
+    <footer class="page-foot">
+      <p>Source of truth: <code>docs/threat-model/THREAT-MODEL.md</code> · generated by <code>site/build.mjs</code> · status: planning · pre-code</p>
+      <p><a href="#content">Back to top</a></p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="On this page">
+    <h2 class="toc-title">On this page</h2>
+<ul class="toc-list">
+<li class="toc-l2"><a href="#1-scope">1. Scope</a></li>
+<li class="toc-l2"><a href="#2-assets">2. Assets</a></li>
+<li class="toc-l2"><a href="#3-actors">3. Actors</a></li>
+<li class="toc-l2"><a href="#4-trust-boundaries">4. Trust boundaries</a></li>
+<li class="toc-l2"><a href="#5-stride-pass-abbreviated">5. STRIDE pass (abbreviated)</a></li>
+<li class="toc-l2"><a href="#6-abuse-case-register">6. Abuse-case register</a></li>
+<li class="toc-l2"><a href="#7-red-team-suite-ci-from-phase-1">7. Red-team suite (CI, from Phase 1)</a></li>
+<li class="toc-l2"><a href="#8-controls-summary">8. Controls summary</a></li>
+<li class="toc-l2"><a href="#9-residual-and-accepted-risks">9. Residual and accepted risks</a></li>
+<li class="toc-l2"><a href="#10-maintenance">10. Maintenance</a></li>
+</ul>
+  </aside>
+</div>
+<dialog class="searchdlg" id="search" aria-label="Search documentation">
+  <div class="search-box">
+    <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></svg>
+    <label class="visually-hidden" for="search-input">Search documentation</label>
+    <input type="search" id="search-input" placeholder="Search headings and text…" autocomplete="off" aria-controls="search-results" aria-describedby="search-status">
+    <button class="search-close" type="button" data-search-close>Close</button>
+  </div>
+  <p class="search-status" id="search-status" role="status" aria-live="polite"></p>
+  <ul class="search-results" id="search-results"></ul>
+</dialog>
+<script src="../../assets/search-index.js" defer></script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

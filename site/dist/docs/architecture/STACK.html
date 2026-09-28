@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en-AU" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Technology stack · Knoxus Engineering documentation</title>
+<meta name="description" content="Web-first SPA with a Rust core: crates, workspace layout, performance budgets and CI gates.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<script>(function(){try{var t=localStorage.getItem('knoxus-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
+</head>
+<body data-root="../../">
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="sidebar" aria-label="Show navigation">
+    <span class="ic-bar" aria-hidden="true"></span>
+  </button>
+  <a class="brand" href="../../index.html">
+    <span class="brand-mark" aria-hidden="true">K</span>
+    <span class="brand-text"><strong>Knoxus</strong><span>Engineering documentation</span></span>
+  </a>
+  <button class="search-trigger" type="button" data-search-open aria-haspopup="dialog">
+    <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></svg><span>Search docs</span><kbd aria-hidden="true">/</kbd>
+  </button>
+  <button class="icon-btn theme-btn" type="button" data-theme-toggle aria-label="Switch colour theme">
+    <svg class="ic ic--sm theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg><svg class="ic ic--sm theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5"/></svg>
+  </button>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar" aria-label="Documentation sections">
+<div class="nav-group">
+<h2 class="nav-group__title">Overview</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/index.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 11.5 12 4.2l8.5 7.3"/><path d="M6 10.4V19.5h12V10.4"/></svg><span>Documentation index</span></a></li>
+<li><a class="nav-link" href="../../docs/PLAN.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6.5v12l5-2 5 2 6-2.5v-12L14 6.5l-5-2z"/><path d="M9 4.5v12"/><path d="M14 6.5v12"/></svg><span>Product &amp; delivery plan</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Architecture</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/architecture/STACK.html" aria-current="page"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4 3.5 8.5 12 13l8.5-4.5z"/><path d="m4.5 12.5 7.5 4 7.5-4"/></svg><span>Technology stack</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Decisions</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/adr/index.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg><span>ADR index</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0000-adr-template.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0000 Template</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0001-record-architecture-decisions.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0001 Record decisions</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0002-web-first-spa-rust-backend.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0002 Web-first + Rust</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0003-modular-monolith-cargo-workspace.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0003 Modular monolith</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0004-school-issued-identities-multi-tenant.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0004 School identities</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0005-chat-privacy-tiering.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0005 Chat privacy tiering</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0006-curated-finite-feed.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0006 Curated finite feed</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0007-credits-append-only-ledger.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0007 Credits ledger</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0008-ai-gateway-prompt-packs.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0008 AI gateway</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0009-compute-hosting-gated-last.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0009 Compute gated last</span></a></li>
+<li><a class="nav-link nav-link--sub" href="../../docs/adr/0010-tauri-desktop-shell.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>ADR-0010 Tauri desktop shell</span></a></li>
+</ul>
+</div>
+<div class="nav-group">
+<h2 class="nav-group__title">Safety</h2>
+<ul class="nav-list">
+<li><a class="nav-link" href="../../docs/threat-model/THREAT-MODEL.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6.2v5.6c0 4.2 2.9 7.4 7 8.7 4.1-1.3 7-4.5 7-8.7V6.2z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><span>Threat model</span></a></li>
+<li><a class="nav-link" href="../../docs/compliance/DPIA.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 4.5H7.5v15h9v-15H15"/><path d="M9.5 3.5h5v2.2h-5z"/><path d="m9.5 13 1.8 1.8 3.6-3.6"/></svg><span>DPIA skeleton</span></a></li>
+<li><a class="nav-link" href="../../docs/economics/CREDITS-MODEL.html"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="6.5" rx="6.5" ry="2.8"/><path d="M5.5 6.5v11c0 1.5 2.9 2.8 6.5 2.8s6.5-1.3 6.5-2.8v-11"/><path d="M5.5 12c0 1.5 2.9 2.8 6.5 2.8s6.5-1.3 6.5-2.8"/></svg><span>Credits economy</span></a></li>
+</ul>
+</div>
+    <div class="nav-group nav-group--foot">
+      <h2 class="nav-group__title">Repository</h2>
+      <ul class="nav-list">
+        <li><a class="nav-link nav-link--sub" href="https://github.com/movainc/movadesktop" target="_blank" rel="noopener noreferrer"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M13.5 3.5V8H18"/></svg><span>GitHub <span aria-hidden="true">↗</span></span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <main class="content" id="content">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="crumb-sep" aria-hidden="true">/</span> <span>Architecture</span> <span class="crumb-sep" aria-hidden="true">/</span> <span aria-current="page">Technology stack</span></nav>
+
+    <article class="prose">
+<h1 id="technology-stack">Technology stack</h1>
+<p>Decision: <strong>web-first front-end, Rust core.</strong> See <a href="../adr/0002-web-first-spa-rust-backend.html">ADR-0002</a> and <a href="../adr/0003-modular-monolith-cargo-workspace.html">ADR-0003</a>.</p>
+<h2 id="1-shape">1. Shape<a class="anchor" href="#1-shape" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Layer</th><th scope="col">Choice</th><th scope="col">Notes</th></tr></thead>
+<tbody>
+<tr><td>Web client</td><td>Vite + React 19 + TypeScript, installable PWA</td><td>Primary client. Ships offline-capable shell</td></tr>
+<tr><td>Desktop client</td><td>Tauri v2 (Rust shell) wrapping the same SPA</td><td>MovaInc-branded desktop build; no second UI codebase</td></tr>
+<tr><td>HTTP/WS API</td><td><code>axum</code> on <code>tokio</code></td><td>One binary family, role flags: <code>api</code>, <code>worker</code>, <code>chat-gateway</code>, <code>migrate</code></td></tr>
+<tr><td>Data</td><td>PostgreSQL 16+ via <code>sqlx</code> (compile-time checked SQL)</td><td><code>tenant_id NOT NULL</code> on every tenant-scoped table</td></tr>
+<tr><td>Cache / presence / queues</td><td>Redis (<code>fred</code>)</td><td>Presence, rate-limit buckets, job queues (or <code>apalis</code> on Postgres for v1)</td></tr>
+<tr><td>Media</td><td><code>ffmpeg</code> sidecar + S3-compatible storage + CDN</td><td>HLS for highlights; sidecar keeps the binary lean</td></tr>
+<tr><td>Realtime</td><td><code>axum</code> WebSocket upgrade, <code>mediasoup</code> SFU for community voice</td><td>Rust for chat fan-out; SFU is external and behind an interface</td></tr>
+<tr><td>Search</td><td>Deferred to Phase 5 (<code>meilisearch</code> or <code>OpenSearch</code>)</td><td>Do not add in v1</td></tr>
+<tr><td>CLI</td><td><code>clap</code> 4 binary, <code>knoxus</code></td><td><code>init</code>, <code>login --no-launch-browser</code> (device-code grant), <code>deploy</code>, <code>logs</code>, <code>env</code>, <code>db connect</code>, <code>credits</code></td></tr>
+<tr><td>Types</td><td><code>utoipa</code> → OpenAPI 3.1 → <code>openapi-typescript</code></td><td>One contract for the SPA, the CLI and any future school integration</td></tr>
+<tr><td>Observability</td><td><code>tracing</code> + OpenTelemetry (OTLP) + Prometheus metrics</td><td>Trace IDs echoed to the client for support</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="2-cargo-workspace-layout">2. Cargo workspace layout<a class="anchor" href="#2-cargo-workspace-layout" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="code"><div class="code-head"><span class="code-lang">text</span><button class="copy" type="button" data-copy>Copy</button></div><pre tabindex="0"><code>/Cargo.toml                  # cargo workspace root
+/crates/
+  knoxus-core/               # domain types + invariants, zero I/O
+  knoxus-db/                 # sqlx repositories, migrations
+  knoxus-api/                # axum handlers (thin), OpenAPI generation
+  knoxus-auth/               # OIDC/SSO, sessions, RBAC, audit trail
+  knoxus-moderation/         # classifiers, multi-message window scoring, escalation
+  knoxus-ai/                 # model registry, prompt packs, provider adapters
+  knoxus-ledger/             # double-entry credits, rust_decimal
+  knoxus-connector/          # knoxi! adapter trait + swappable backends
+  knoxus-hosting/            # static / VPS / GPU control plane (Phase 4 &amp; 6)
+  knoxus-server/             # composition root; the only binary that binds ports
+  knoxus-cli/                # `knoxus` binary
+  knoxus-types/              # DTOs exported to TypeScript
+/web/                        # pnpm workspace: SPA, generated API client, shared UI
+/infra/                      # Dockerfiles, Terraform, DNS, policy files
+/docs/</code></pre></div>
+<p><strong>Modular monolith, not microservices.</strong> One deployable with hard crate boundaries. Splitting later is a deployment change; starting split makes every Phase 1 change a distributed-systems change.</p>
+<h2 id="3-performance-where-it-actually-matters">3. Performance where it actually matters<a class="anchor" href="#3-performance-where-it-actually-matters" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p>Rust is not a substitute for indexes and query discipline. The budgets that justify the choice:</p>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Path</th><th scope="col">Target (p95, intra-region)</th><th scope="col">Dominant cost</th></tr></thead>
+<tbody>
+<tr><td>Chat message send → recipient receives</td><td>&lt; 150 ms</td><td>Fan-out, presence lookup</td></tr>
+<tr><td>Feed / profile read</td><td>&lt; 250 ms</td><td>SQL + payload size, not language</td></tr>
+<tr><td>Inline text moderation decision</td><td>&lt; 400 ms</td><td>Provider latency (route async)</td></tr>
+<tr><td>Media moderation</td><td>Async, &lt; 60 s</td><td>Video decode; never inline</td></tr>
+<tr><td>Credits ledger commit</td><td>&lt; 20 ms, serialised per account</td><td>Row lock on account head</td></tr>
+</tbody>
+</table>
+</div>
+<p>Guardrails: no N+1 queries in a handler (repository layer forbids per-item loops), <code>sqlx</code> compile-time verification in CI, load tests (<code>oha</code>/<code>k6</code>) on chat fan-out and the ledger before Phase 3.</p>
+<h2 id="4-deliberate-non-choices">4. Deliberate non-choices<a class="anchor" href="#4-deliberate-non-choices" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Rejected</th><th scope="col">Why</th></tr></thead>
+<tbody>
+<tr><td>Node/Next.js back-end</td><td>Would still need Rust for the Tauri shell and the CLI; one back-end language beats two. Server-rendering also fights the PWA/desktop-shell reuse</td></tr>
+<tr><td>Go</td><td>Fine tool, but the desktop shell is already Rust — one language across shell, server and CLI</td></tr>
+<tr><td>Microservices or K8s in v1</td><td>Operationally unjustifiable at this team size</td></tr>
+<tr><td>GraphQL</td><td>OpenAPI + typed generation is simpler for a CLI, a SPA and school integrations</td></tr>
+<tr><td>A &quot;crypto-native&quot; ledger</td><td>Credits are an accounting problem, not a blockchain problem</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="5-honest-costs-of-this-choice">5. Honest costs of this choice<a class="anchor" href="#5-honest-costs-of-this-choice" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Cost</th><th scope="col">Mitigation</th></tr></thead>
+<tbody>
+<tr><td>Rust ramp-up for contributors</td><td>Keep async surface thin; <code>knoxus-core</code> is pure, well-tested, easy first work</td></tr>
+<tr><td>Compile times</td><td><code>cargo-chef</code> layer caching, <code>sccache</code>, incremental CI, deny-by-default on new deps</td></tr>
+<tr><td><code>cargo</code> absent here</td><td><code>rust-toolchain.toml</code> pinned; install <code>rustup</code> at the first code commit</td></tr>
+<tr><td>Small dependency ecosystems for some school-specific integrations</td><td>Isolate behind traits in <code>knoxus-connector</code>, keep adapters dumb</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="6-ci-gates-from-the-first-code-commit">6. CI gates (from the first code commit)<a class="anchor" href="#6-ci-gates-from-the-first-code-commit" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<p><code>cargo fmt --check</code> · <code>cargo clippy -- -D warnings</code> · <code>cargo test</code> · <code>cargo deny</code> (licences + advisories) · <code>cargo audit</code> · <code>sqlx</code> offline-mode build check · <code>openapi-typescript</code> drift check (contract regenerates cleanly) · <code>pnpm lint test build</code> · Playwright smoke on the SPA · migration dry-run against a <code>testcontainers</code> Postgres · abuse suite (§ threat model §7).</p>
+<h2 id="7-web-client-specifics">7. Web client specifics<a class="anchor" href="#7-web-client-specifics" aria-label="Link to this section"><span aria-hidden="true">#</span></a></h2>
+<div class="table-wrap" role="region" aria-label="Table, scrollable" tabindex="0">
+<table>
+<thead><tr><th scope="col">Concern</th><th scope="col">Choice</th></tr></thead>
+<tbody>
+<tr><td>Framework</td><td>React 19 + TypeScript, Vite build, <code>vite-plugin-pwa</code> for the installable shell</td></tr>
+<tr><td>Data</td><td>TanStack Query (server state) + TanStack Router (typed routes)</td></tr>
+<tr><td>Forms</td><td>TanStack Form + Zod, sharing schemas with the generated API types</td></tr>
+<tr><td>Styling</td><td>Tailwind + Radix primitives; design tokens in <code>web/src/design-tokens.ts</code></td></tr>
+<tr><td>i18n</td><td>ICU message format; AI translation is <em>content</em>, never a substitute for UI strings</td></tr>
+<tr><td>Tests</td><td>Vitest unit · Playwright smoke + accessibility assertions</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Client budgets</strong> (they exist because school Wi-Fi and ageing Chromebooks are the real environment):</p>
+<ul>
+<li>Initial JS ≤ 200 KB gzip; route-level code splitting mandatory.</li>
+<li>LCP ≤ 2.5 s on a mid-tier Chromebook over school Wi-Fi; no layout shift from fonts.</li>
+<li>Images and video lazy-loaded; no autoplay video; no third-party scripts.</li>
+<li>Accessibility: WCAG 2.2 AA as a gate, keyboard-complete, visible focus, reduced-motion honoured. A school product that fails a11y fails the students who need it most.</li>
+</ul>
+<p><strong>No third-party analytics, trackers or ad SDKs, ever.</strong> Behavioural telemetry about minors is a liability with no upside; self-hosted, aggregate-only metrics are the ceiling.</p>
+<p>Practical risks to plan for: school-managed devices may block PWA installation or push notifications, so the product must be fully usable in a plain browser tab; and iOS PWA push has platform caveats — do not make a feature depend on it.</p>
+<p><em>See <a href="../PLAN.html">PLAN.md</a> for scope and phase sequencing.</em></p>
+    </article>
+<nav class="pager" aria-label="Document navigation">
+<a class="pager-link pager-link--prev" rel="prev" href="../../docs/PLAN.html"><span class="pager-arrow" aria-hidden="true">←</span><span><span class="pager-label">Previous</span><span class="pager-title">Product &amp; delivery plan</span></span></a>
+<a class="pager-link pager-link--next" rel="next" href="../../docs/adr/index.html"><span><span class="pager-label">Next</span><span class="pager-title">ADR index</span></span><span class="pager-arrow" aria-hidden="true">→</span></a>
+</nav>
+    <footer class="page-foot">
+      <p>Source of truth: <code>docs/architecture/STACK.md</code> · generated by <code>site/build.mjs</code> · status: planning · pre-code</p>
+      <p><a href="#content">Back to top</a></p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="On this page">
+    <h2 class="toc-title">On this page</h2>
+<ul class="toc-list">
+<li class="toc-l2"><a href="#1-shape">1. Shape</a></li>
+<li class="toc-l2"><a href="#2-cargo-workspace-layout">2. Cargo workspace layout</a></li>
+<li class="toc-l2"><a href="#3-performance-where-it-actually-matters">3. Performance where it actually matters</a></li>
+<li class="toc-l2"><a href="#4-deliberate-non-choices">4. Deliberate non-choices</a></li>
+<li class="toc-l2"><a href="#5-honest-costs-of-this-choice">5. Honest costs of this choice</a></li>
+<li class="toc-l2"><a href="#6-ci-gates-from-the-first-code-commit">6. CI gates (from the first code commit)</a></li>
+<li class="toc-l2"><a href="#7-web-client-specifics">7. Web client specifics</a></li>
+</ul>
+  </aside>
+</div>
+<dialog class="searchdlg" id="search" aria-label="Search documentation">
+  <div class="search-box">
+    <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></svg>
+    <label class="visually-hidden" for="search-input">Search documentation</label>
+    <input type="search" id="search-input" placeholder="Search headings and text…" autocomplete="off" aria-controls="search-results" aria-describedby="search-status">
+    <button class="search-close" type="button" data-search-close>Close</button>
+  </div>
+  <p class="search-status" id="search-status" role="status" aria-live="polite"></p>
+  <ul class="search-results" id="search-results"></ul>
+</dialog>
+<script src="../../assets/search-index.js" defer></script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

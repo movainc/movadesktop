@@ -2,7 +2,19 @@
 Desktop App for MovaInc.
 
 > **Knoxus** — the platform this repository is being built for — is at the **planning / pre-code**
-> stage. All design work lives in [`docs/`](docs/README.md):
+> stage. All design work lives in [`docs/`](docs/README.md), and is also published as a static site.
+
+**Documentation site:** open [`site/dist/index.html`](site/dist/index.html), or run it:
+
+```sh
+node site/serve.mjs          # preview on http://localhost:4173
+node site/build.mjs          # regenerate the site from /docs
+node site/tools/audit.mjs    # WCAG AAA contrast, structure, link and freshness checks
+```
+
+Plain HTML/CSS/JS with no dependencies, no build tooling and no external requests. See
+[`site/README.md`](site/README.md).
+
 >
 > | Document | Contents |
 > |---|---|
