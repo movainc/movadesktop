@@ -1,0 +1,45 @@
+mova — Proprietary Software License
+
+Copyright (c) 2026 Mova Inc. All rights reserved.
+
+This repository and all source code, object code, designs, logos, icons,
+documentation and other materials in it (the "Software") are the
+proprietary and confidential property of Mova Inc ("Mova").
+
+1. No licence is granted except as stated here. You may view and use the
+   Software only if Mova has authorised you to do so (for example as an
+   employee, contractor or approved collaborator), and only for the
+   purpose of developing, testing or evaluating mova for Mova.
+
+2. You may not, without Mova's prior written permission:
+   a. copy, modify, merge, publish, distribute, sublicense or sell the
+      Software or any part of it;
+   b. use the Software to build a competing product or service;
+   c. reverse engineer, decompile or disassemble any compiled form of the
+      Software, except where applicable law expressly permits this
+      despite this restriction;
+   d. remove or alter any copyright, trademark or licence notice.
+
+3. Trademarks. "mova", the mova logo and related marks are trademarks of
+   Mova Inc. Nothing in this licence grants any right to use them.
+
+4. Third-party software. The Software includes open-source components
+   that are licensed under their own terms, listed in
+   THIRD_PARTY_NOTICES.md and in the licenses/ directory. Nothing in this
+   licence limits your rights under those open-source licences for those
+   components.
+
+5. End users of the released mova application are governed by the Terms
+   of Use (TERMS.md) rather than this source licence.
+
+6. Disclaimer. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+   KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+   OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+   NONINFRINGEMENT. IN NO EVENT SHALL MOVA BE LIABLE FOR ANY CLAIM,
+   DAMAGES OR OTHER LIABILITY ARISING FROM, OUT OF OR IN CONNECTION WITH
+   THE SOFTWARE OR ITS USE.
+
+7. Termination. Any breach of this licence ends your permission to use
+   the Software immediately.
+
+For licensing enquiries, contact Mova Inc.
