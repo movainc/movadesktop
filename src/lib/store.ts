@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { buildSeed, PROJECT_COLORS } from "./seed";
-import type { CalendarEvent, FileItem, Folder, ID, LinkItem, Note, Project, Task, Theme, View } from "./types";
+import { buildEmpty, PROJECT_COLORS } from "./seed";
+import type { CalendarEvent, FileItem, Folder, ID, LinkItem, Note, Project, Task, View } from "./types";
 
 const uid = (prefix: string) => `${prefix}-${Math.random().toString(36).slice(2, 10)}`;
 const now = () => new Date().toISOString();
@@ -19,11 +19,12 @@ interface Data {
   links: LinkItem[];
 }
 
-interface State extends Data {
+export interface State extends Data {
   view: View;
   history: View[];
   recent: Recent[];
-  theme: Theme;
+  onboarded: boolean;
+  tourStep: number | null;
   sidebarCollapsed: boolean;
   searchOpen: boolean;
   assistantOpen: boolean;
@@ -33,7 +34,9 @@ interface State extends Data {
   go: (v: View) => void;
   back: () => void;
   touch: (kind: RecentKind, id: ID) => void;
-  setTheme: (t: Theme) => void;
+  startTour: () => void;
+  setTourStep: (step: number | null) => void;
+  finishTour: () => void;
   toggleSidebar: () => void;
   setSearchOpen: (open: boolean) => void;
   setAssistantOpen: (open: boolean) => void;
@@ -68,19 +71,31 @@ interface State extends Data {
   resetWorkspace: () => void;
 }
 
+function initialState() {
+  return {
+    ...buildEmpty(),
+    view: { name: "today" } as View,
+    history: [] as View[],
+    recent: [] as Recent[],
+    onboarded: false,
+    tourStep: null as number | null,
+  };
+}
+
+// Each account gets its own workspace in local storage. Called whenever the signed-in account changes.
+export async function bindWorkspace(accountId: string | null) {
+  useStore.setState({ ...initialState(), focus: null, searchOpen: false, assistantOpen: false });
+  if (!accountId) return;
+  useStore.persist.setOptions({ name: `mova-workspace:${accountId}` });
+  await useStore.persist.rehydrate();
+}
+
+export const DATA_KEYS = ["projects", "tasks", "notes", "events", "folders", "files", "links"] as const;
+
 export const useStore = create<State>()(
   persist(
     (set, get) => ({
-      ...buildSeed(),
-      view: { name: "today" },
-      history: [],
-      recent: [
-        { kind: "project", id: "p-history", at: now() },
-        { kind: "project", id: "p-robotics", at: now() },
-        { kind: "project", id: "p-content", at: now() },
-        { kind: "file", id: "fi3", at: now() },
-      ],
-      theme: "system",
+      ...initialState(),
       sidebarCollapsed: false,
       searchOpen: false,
       assistantOpen: false,
@@ -96,7 +111,9 @@ export const useStore = create<State>()(
       back: () => set((s) => (s.history.length ? { view: s.history[s.history.length - 1], history: s.history.slice(0, -1) } : s)),
       touch: (kind, id) =>
         set((s) => ({ recent: [{ kind, id, at: now() }, ...s.recent.filter((r) => !(r.kind === kind && r.id === id))].slice(0, 12) })),
-      setTheme: (theme) => set({ theme }),
+      startTour: () => set({ tourStep: 0, view: { name: "today" }, focus: null, searchOpen: false, assistantOpen: false }),
+      setTourStep: (tourStep) => set({ tourStep }),
+      finishTour: () => set({ tourStep: null, onboarded: true }),
       toggleSidebar: () => set((s) => ({ sidebarCollapsed: !s.sidebarCollapsed })),
       setSearchOpen: (searchOpen) => set({ searchOpen }),
       setAssistantOpen: (assistantOpen) => set({ assistantOpen }),
@@ -167,32 +184,13 @@ export const useStore = create<State>()(
       addLink: (l) => set((s) => ({ links: [...s.links, { ...l, id: uid("l") }] })),
       deleteLink: (id) => set((s) => ({ links: s.links.filter((l) => l.id !== id) })),
 
-      resetWorkspace: () => set({ ...buildSeed(), view: { name: "today" }, history: [], focus: null }),
+      resetWorkspace: () => set({ ...initialState(), focus: null }),
     }),
     {
-      name: "mova-workspace",
-      version: 3,
-      migrate: (persisted, version) => {
-        const state = persisted as State;
-        if (version < 3) {
-          const seed = buildSeed();
-          const addMissing = <T extends { id: string }>(have: T[], extra: T[]) => [...have, ...extra.filter((x) => !have.some((h) => h.id === x.id))];
-          state.projects = addMissing(state.projects, seed.projects.filter((p) => p.id === "p-web" || p.id === "p-examples"));
-          state.folders = addMissing(state.folders, seed.folders.filter((f) => f.id === "f-examples"));
-          state.files = addMissing(state.files, seed.files.filter((f) => f.id.startsWith("ex")));
-        }
-        if (version < 2) {
-          const seedFiles = buildSeed().files;
-          const byId = new Map(seedFiles.map((f) => [f.id, f]));
-          const have = new Set(state.files.map((f) => f.id));
-          state.files = [
-            ...state.files.map((f) => (byId.get(f.id)?.content !== undefined && f.content === undefined ? { ...f, content: byId.get(f.id)!.content } : f)),
-            ...seedFiles.filter((f) => !have.has(f.id) && f.content !== undefined),
-          ];
-        }
-        return state;
-      },
-      partialize: ({ searchOpen: _s, assistantOpen: _a, focus: _f, history: _h, ...rest }) => rest,
+      name: "mova-workspace:signed-out",
+      version: 1,
+      skipHydration: true,
+      partialize: ({ searchOpen: _s, assistantOpen: _a, focus: _f, history: _h, tourStep: _t, ...rest }) => rest,
     },
   ),
 );

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
-  Calendar as CalendarIcon, Check, FileCode2, FileImage, FileSpreadsheet, FileText, FileVideo, File as FileGeneric, Plus, Trash2, X,
+  Calendar as CalendarIcon, Check, Plus, Trash2, X,
 } from "lucide-react";
 import { useStore } from "../lib/store";
 import { dueLabel, daysFromToday, fmtTime, fromDateInput, toDateInput } from "../lib/dates";
@@ -179,18 +179,7 @@ export function Field({ label, children }: { label: string; children: ReactNode 
   );
 }
 
-const FILE_ICONS: Record<FileKind, typeof FileText> = {
-  pdf: FileText, doc: FileText, image: FileImage, code: FileCode2, sheet: FileSpreadsheet, video: FileVideo, other: FileGeneric,
-};
-
-export function FileIcon({ kind, size = 16 }: { kind: FileKind; size?: number }) {
-  const Icon = FILE_ICONS[kind];
-  return (
-    <span className={`file-icon kind-${kind}`}>
-      <Icon size={size} strokeWidth={1.75} />
-    </span>
-  );
-}
+export { FileTypeIcon as FileIcon } from "./FileTypeIcon";
 
 export function kindFromName(name: string): FileKind {
   const ext = name.split(".").pop()?.toLowerCase() ?? "";

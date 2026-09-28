@@ -5,3 +5,14 @@ src-tauri/gen/schemas
 .DS_Store
 *.log
 *.tsbuildinfo
+web/dist
+.vercel-out
+website/dist
+
+# Local secrets — only the .env.example templates are committed
+.env
+.env.*
+!.env.example
+
+# Vercel
+.vercel

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0f0f0f" media="(prefers-color-scheme: dark)" />
+  <meta property="og:title" content="{{title}}" />
+  <meta property="og:description" content="{{description}}" />
+  <meta property="og:image" content="https://movadesktop.vercel.app/assets/screenshots/today.png" />
+  <meta property="og:url" content="https://movadesktop.vercel.app{{path}}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://movadesktop.vercel.app{{path}}" />
+  <link rel="icon" href="/assets/mova.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="page-{{nav}}">
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/" aria-label="mova home"><img src="/assets/mova.svg" alt="" width="28" height="28" /><span>mova</span></a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="/features" data-nav="features">Features</a>
+        <a href="/download" data-nav="download">Download</a>
+        <a href="/changelog" data-nav="changelog">Changelog</a>
+        <a href="https://movadocs.vercel.app">Docs</a>
+        <a href="/about" data-nav="about">About</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="https://movadesktopweb.vercel.app">Sign in</a>
+        <a class="btn btn-primary" href="/download">Get mova</a>
+      </div>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" onclick="this.setAttribute('aria-expanded', document.body.classList.toggle('menu-open'))">☰</button>
+    </div>
+  </header>
+
+  <main>
+{{content}}
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/"><img src="/assets/mova.svg" alt="" width="24" height="24" /><span>mova</span></a>
+        <p class="fine">Everything for what you're working on.</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-head">Product</p>
+        <a href="/features">Features</a>
+        <a href="/download">Download</a>
+        <a href="https://movadesktopweb.vercel.app">Web app</a>
+        <a href="/changelog">Changelog</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-head">Resources</p>
+        <a href="https://movadocs.vercel.app">Documentation</a>
+        <a href="https://movadocs.vercel.app/getting-started">Getting started</a>
+        <a href="https://movadocs.vercel.app/google-sign-in">Google sign-in</a>
+        <a href="/about">About</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-head">Legal</p>
+        <a href="/terms">Terms of Use</a>
+        <a href="/privacy">Privacy Notice</a>
+        <a href="/licenses">Open-source licences</a>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <p class="fine">© 2026 Mova Inc. All rights reserved.</p>
+      <p class="fine">Code editor powered by Monaco (Code - OSS), © Microsoft, MIT License. mova is not affiliated with Microsoft or Google.</p>
+    </div>
+  </footer>
+  <script src="/main.js" defer></script>
+</body>
+</html>

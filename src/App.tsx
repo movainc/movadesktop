@@ -1,10 +1,17 @@
 import { Suspense, lazy, useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
 import { useStore } from "./lib/store";
+import { useSession } from "./lib/session";
+import { restoreSession } from "./lib/auth";
+import { isDesktop } from "./lib/ai";
+import { installExternalLinkHandler } from "./lib/links";
 import type { View } from "./lib/types";
 import { Sidebar } from "./components/Sidebar";
 import { SearchPalette } from "./components/SearchPalette";
 import { FocusMode } from "./components/FocusMode";
 import { Assistant } from "./components/Assistant";
+import { Tour } from "./components/Tour";
+import { LogoMark } from "./components/Logo";
 import { Today } from "./views/Today";
 import { Tasks } from "./views/Tasks";
 import { NewProjectModal, Projects } from "./views/Projects";
@@ -13,6 +20,7 @@ import { Calendar } from "./views/Calendar";
 import { Notes } from "./views/Notes";
 import { Files } from "./views/Files";
 import { Settings } from "./views/Settings";
+import { SignIn } from "./views/SignIn";
 
 const Code = lazy(() => import("./views/Code"));
 
@@ -27,17 +35,43 @@ const SHORTCUT_VIEWS: Record<string, View> = {
 };
 
 export default function App() {
-  const view = useStore((s) => s.view);
-  const theme = useStore((s) => s.theme);
-  const searchOpen = useStore((s) => s.searchOpen);
-  const focus = useStore((s) => s.focus);
-  const assistantOpen = useStore((s) => s.assistantOpen && s.aiEnabled);
-  const [newProject, setNewProject] = useState(false);
+  const theme = useSession((s) => s.theme);
+  const ready = useSession((s) => s.ready);
+  const account = useSession((s) => s.account);
 
   useEffect(() => {
     if (theme === "system") document.documentElement.removeAttribute("data-theme");
     else document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    installExternalLinkHandler();
+    restoreSession();
+  }, []);
+
+  if (!ready) {
+    return (
+      <div className="boot">
+        <LogoMark size={40} />
+        <Loader2 size={16} className="spin" />
+      </div>
+    );
+  }
+  return account ? <Workspace key={account.id} /> : <SignIn />;
+}
+
+function Workspace() {
+  const view = useStore((s) => s.view);
+  const searchOpen = useStore((s) => s.searchOpen);
+  const focus = useStore((s) => s.focus);
+  const tourStep = useStore((s) => s.tourStep);
+  const onboarded = useStore((s) => s.onboarded);
+  const assistantOpen = useStore((s) => s.assistantOpen && s.aiEnabled && isDesktop);
+  const [newProject, setNewProject] = useState(false);
+
+  useEffect(() => {
+    if (!useStore.getState().onboarded && useStore.getState().tourStep === null) useStore.getState().startTour();
+  }, [onboarded]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -46,7 +80,7 @@ export default function App() {
       const s = useStore.getState();
       const key = e.key.toLowerCase();
       if (key === "k") { e.preventDefault(); s.setSearchOpen(!s.searchOpen); }
-      else if (key === "j" && s.aiEnabled) { e.preventDefault(); s.setAssistantOpen(!s.assistantOpen); }
+      else if (key === "j" && s.aiEnabled && isDesktop) { e.preventDefault(); s.setAssistantOpen(!s.assistantOpen); }
       else if (key === "\\") { e.preventDefault(); s.toggleSidebar(); }
       else if (key === "f" && e.shiftKey) { e.preventDefault(); s.focus ? s.endFocus() : s.startFocus(s.view.name === "project" ? { projectId: s.view.id } : {}); }
       else if (key === "[") { e.preventDefault(); s.back(); }
@@ -77,6 +111,7 @@ export default function App() {
       {searchOpen && <SearchPalette onNewProject={() => setNewProject(true)} />}
       {newProject && <NewProjectModal onClose={() => setNewProject(false)} />}
       {focus && <FocusMode />}
+      {tourStep !== null && <Tour />}
     </div>
   );
 }

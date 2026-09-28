@@ -8,6 +8,7 @@ export interface Project {
   description: string;
   area: Area;
   color: string;
+  icon?: string;
   deadline?: string;
   starred: boolean;
   createdAt: string;
@@ -60,6 +61,7 @@ export interface FileItem {
   starred: boolean;
   updatedAt: string;
   content?: string;
+  driveId?: string;
 }
 
 export interface LinkItem {
@@ -76,7 +78,7 @@ export type View =
   | { name: "project"; id: ID; tab?: ProjectTab }
   | { name: "calendar" }
   | { name: "notes"; id?: ID }
-  | { name: "files"; folderId?: ID; filter?: "starred" | "recent" }
+  | { name: "files"; folderId?: ID; filter?: "starred" | "recent" | "drive" }
   | { name: "code"; fileId?: ID }
   | { name: "settings" };
 

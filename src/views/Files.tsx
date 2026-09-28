@@ -4,6 +4,8 @@ import { useStore } from "../lib/store";
 import { fmtDate, relativeAgo } from "../lib/dates";
 import type { FileItem, ID } from "../lib/types";
 import { Empty, FileIcon, Field, Modal, ProjectTag, fmtSize, kindFromName } from "../components/ui";
+import { GoogleDriveLogo } from "../components/GoogleDriveLogo";
+import { DriveBrowser } from "./DriveBrowser";
 
 const TEXT_EXT = /\.(py|ts|tsx|js|jsx|json|mcmeta|md|txt|html|css|scss|rs|go|java|c|h|cpp|cs|sh|ya?ml|toml|sql|csv|xml)$/i;
 const isTextName = (name: string) => TEXT_EXT.test(name);
@@ -43,7 +45,7 @@ export function FileTable({ files, compact = false, selected, onSelect }: { file
       <ul className="item-list">
         {files.map((f) => (
           <li key={f.id} onClick={() => touch("file", f.id)}>
-            <FileIcon kind={f.kind} size={14} />
+            <FileIcon name={f.name} size={14} />
             <span className="item-title">{f.name}</span>
             <span className="item-sub">{fmtSize(f.size)}</span>
           </li>
@@ -58,7 +60,7 @@ export function FileTable({ files, compact = false, selected, onSelect }: { file
       </div>
       {files.map((f) => (
         <div key={f.id} role="row" className={`file-row ${selected === f.id ? "is-selected" : ""}`} onClick={() => { onSelect?.(f.id); touch("file", f.id); }}>
-          <span className="file-name"><FileIcon kind={f.kind} />{f.name}</span>
+          <span className="file-name"><FileIcon name={f.name} />{f.name}</span>
           <span><ProjectTag projectId={f.projectId} /></span>
           <span className="quiet">{relativeAgo(f.updatedAt)}</span>
           <span className="quiet num">{fmtSize(f.size)}</span>
@@ -136,7 +138,13 @@ export function Files() {
     <div className="split">
       <aside className="subnav">
         <p className="subnav-title">Files</p>
-        <FolderTree parentId={"root"} depth={0} current={folderId} onOpen={(id) => go({ name: "files", folderId: id })} />
+        <FolderTree parentId={"root"} depth={0} current={filter === "drive" ? undefined : folderId} onOpen={(id) => go({ name: "files", folderId: id })} />
+        <p className="subnav-title subnav-title-spaced">Cloud</p>
+        <button className={`tree-item ${filter === "drive" ? "is-active" : ""}`} style={{ paddingLeft: 8 }} onClick={() => go({ name: "files", filter: "drive" })}>
+          <span className="tree-caret" />
+          <GoogleDriveLogo size={14} />
+          <span>Google Drive</span>
+        </button>
         <div className="storage">
           <div className="storage-head"><HardDrive size={13} /> Storage</div>
           <div className="progress"><span style={{ width: `${Math.min(100, (used / 15e9) * 100)}%`, background: "var(--accent)" }} /></div>
@@ -144,6 +152,12 @@ export function Files() {
         </div>
       </aside>
 
+      {filter === "drive" ? (
+        <div className="page page-files">
+          <header className="page-header"><div><h1>Google Drive</h1><p className="page-sub">Open and edit files that live in your Drive.</p></div></header>
+          <DriveBrowser />
+        </div>
+      ) : (
       <div className="page page-files" {...upload.dropProps}>
         {upload.dragging && <div className="drop-overlay"><Upload size={22} /> Drop to upload to {title}</div>}
         <nav className="crumbs">
@@ -185,14 +199,15 @@ export function Files() {
         ) : shown.length > 0 && <FileTable files={shown} selected={selected} onSelect={setSelected} />}
         {upload.input}
       </div>
+      )}
 
-      {sel && (
+      {sel && filter !== "drive" && (
         <aside className="panel">
           <header className="panel-head">
             <span className="panel-kicker">File</span>
             <button className="icon-btn" onClick={() => setSelected(null)} aria-label="Close"><X size={16} /></button>
           </header>
-          <div className="file-preview"><FileIcon kind={sel.kind} size={40} /></div>
+          <div className="file-preview"><FileIcon name={sel.name} size={40} /></div>
           <h3 className="panel-file-name">{sel.name}</h3>
           <dl className="props">
             <dt>Size</dt><dd>{fmtSize(sel.size)}</dd>

@@ -1,4 +1,4 @@
-import { ArrowRight, FileText, LayoutGrid, Play, Target } from "lucide-react";
+import { ArrowRight, FileText, GraduationCap, LayoutGrid, Play, Plus, Target } from "lucide-react";
 import { useStore } from "../lib/store";
 import { daysFromToday, dueLabel, fmtDate, fmtTime, greeting, isSameDay, relativeAgo } from "../lib/dates";
 import { Empty, FileIcon, ProjectDot, QuickAddTask, Section, TaskRow } from "../components/ui";
@@ -6,7 +6,7 @@ import { Empty, FileIcon, ProjectDot, QuickAddTask, Section, TaskRow } from "../
 type Slot = { id: string; start: string; end: string; title: string; projectId?: string; kind: "event" | "task"; done?: boolean };
 
 export function Today() {
-  const { tasks, events, projects, recent, notes, files, go, startFocus } = useStore();
+  const { tasks, events, projects, recent, notes, files, go, startFocus, startTour } = useStore();
   const now = new Date();
 
   const slots: Slot[] = [
@@ -46,7 +46,7 @@ export function Today() {
         return n && { key: `n${n.id}`, icon: <span className="recent-icon"><FileText size={14} /></span>, title: n.title || "Untitled", sub: "Note", at: r.at, open: () => go({ name: "notes", id: n.id }) };
       }
       const f = files.find((x) => x.id === r.id);
-      return f && { key: `f${f.id}`, icon: <FileIcon kind={f.kind} size={14} />, title: f.name, sub: "File", at: r.at, open: () => go({ name: "files", folderId: f.folderId }) };
+      return f && { key: `f${f.id}`, icon: <FileIcon name={f.name} size={14} />, title: f.name, sub: "File", at: r.at, open: () => go({ name: "files", folderId: f.folderId }) };
     })
     .filter(Boolean)
     .slice(0, 5);
@@ -71,6 +71,20 @@ export function Today() {
           </button>
         </div>
       </header>
+
+      {projects.length === 0 && (
+        <div className="welcome-card">
+          <div>
+            <p className="eyebrow">Getting started</p>
+            <h2>Your workspace is ready</h2>
+            <p>Start with a project — a subject, an assignment or something you're building. Everything else hangs off it.</p>
+          </div>
+          <div className="welcome-actions">
+            <button className="btn btn-primary" onClick={() => go({ name: "projects" })}><Plus size={15} /> Create a project</button>
+            <button className="btn" onClick={startTour}><GraduationCap size={15} /> Take the 2-minute tour</button>
+          </div>
+        </div>
+      )}
 
       <div className="today-grid">
         <div className="col">
@@ -158,6 +172,7 @@ export function Today() {
           </Section>
 
           <Section title="Recent">
+            {recentItems.length === 0 && <p className="quiet">Projects, notes and files you open will show up here.</p>}
             <ul className="recent-list">
               {recentItems.map((r) => r && (
                 <li key={r.key} onClick={r.open}>

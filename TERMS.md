@@ -22,59 +22,64 @@ You may not:
 - use mova to break the law, infringe others' rights, or distribute malware or harmful content;
 - try to interfere with or gain unauthorised access to mova or its services.
 
-## 3. Your content
+## 3. Your account
+
+You need a Google account to use mova. You're responsible for activity under your account and for keeping it secure. Your use of Google sign-in and Google Drive is also subject to Google's terms. You can stop using mova at any time by signing out and uninstalling it.
+
+## 4. Your content
 
 "Your content" is everything you create or add in mova: tasks, notes, files, code, events, links and so on.
 
 - **You own your content.** Mova claims no ownership of it.
-- In the current version your workspace is stored **on your device**. You are responsible for backing it up. Resetting the workspace, uninstalling mova or clearing app data may delete it permanently.
+- Your workspace is stored **on your device** or **in your browser**, and optionally in **your own Google Drive**. You are responsible for backing it up. Clearing the workspace, uninstalling mova or clearing app or browser data may delete it permanently.
+- When you connect Google Drive, mova edits the files you open **in place**. Changes you make are saved to those files in your Drive.
 - You are responsible for your content and for having the rights to use it.
 
-## 4. AI features
+## 5. AI features
 
 mova includes optional AI features (the assistant, task suggestions and breaking tasks into steps).
 
-- AI features are **off unless you provide an API key**. When they are used, the relevant text (described in [docs/AI.md](docs/AI.md)) is sent to the AI provider (currently OpenAI) under that provider's terms and policies.
+- AI features are available in the desktop app and are **off unless an API key is provided**. When they are used, the relevant text (described in [docs/AI.md](docs/AI.md)) is sent to the AI provider (currently OpenAI) under that provider's terms and policies.
 - If you use your own API key, you are responsible for it, for the provider's charges, and for complying with the provider's terms.
 - **AI output may be inaccurate, incomplete or inappropriate.** Always review suggestions before relying on them. AI features are meant to help you plan and get started, not to produce work you present as your own. Follow your school's or employer's rules on AI use.
 - Don't send sensitive personal information to AI features.
 
-## 5. Third-party software and services
+## 6. Third-party software and services
 
 mova includes open-source software, including the Monaco Editor (the editor core of Code - OSS). It is listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and licensed under its own terms. Links, integrations and AI providers are third-party services that Mova does not control, and we are not responsible for them.
 
-## 6. Updates and changes
+## 7. Updates and changes
 
 We may update mova, add or remove features, or change these Terms. If we make material changes to these Terms, we will give notice, for example in the app or on our website. Continuing to use mova after changes take effect means you accept them.
 
-## 7. Feedback
+## 8. Feedback
 
 If you send us feedback or suggestions, you allow us to use them without obligation to you.
 
-## 8. Intellectual property
+## 9. Intellectual property
 
 mova, including its design, logo, code and documentation, belongs to Mova Inc and its licensors and is protected by law. "mova" and the mova logo are trademarks of Mova Inc. These Terms give you no right to use them.
 
-## 9. Disclaimers
+## 10. Disclaimers
 
 MOVA IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, AND THAT MOVA WILL BE UNINTERRUPTED, ERROR-FREE OR THAT DATA WILL NOT BE LOST. Some jurisdictions don't allow certain disclaimers, so some of these may not apply to you.
 
-## 10. Limitation of liability
+## 11. Limitation of liability
 
 TO THE MAXIMUM EXTENT PERMITTED BY LAW, MOVA WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, OR ANY LOSS OF DATA, PROFITS OR GOODWILL, ARISING FROM YOUR USE OF MOVA. MOVA'S TOTAL LIABILITY FOR ANY CLAIM RELATING TO MOVA WILL NOT EXCEED THE GREATER OF THE AMOUNT YOU PAID FOR MOVA IN THE 12 MONTHS BEFORE THE CLAIM, OR [USD 50]. Nothing in these Terms limits liability that cannot be limited by law, including your rights as a consumer.
 
-## 11. Termination
+## 12. Termination
 
-You can stop using mova at any time by uninstalling it. We may suspend or end your right to use mova if you seriously or repeatedly breach these Terms. Sections 3, 5 and 8–13 continue after termination.
+You can stop using mova at any time by uninstalling it. We may suspend or end your right to use mova if you seriously or repeatedly breach these Terms. Sections 4, 6 and 9–14 continue after termination.
 
-## 12. Governing law
+## 13. Governing law
 
 These Terms are governed by the laws of [jurisdiction], without regard to conflict-of-law rules. Disputes will be handled by the courts of [venue], unless your local consumer law gives you the right to bring proceedings where you live.
 
-## 13. General
+## 14. General
 
 If any part of these Terms is unenforceable, the rest remains in effect. Our not enforcing a right is not a waiver of it. You may not transfer these Terms; we may transfer them as part of a merger, acquisition or sale of assets. These Terms, together with the [Privacy Notice](PRIVACY.md), are the whole agreement between you and Mova about mova.
 
-## 14. Contact
+## 15. Contact
 
 Mova Inc — [contact email] — [postal address]
