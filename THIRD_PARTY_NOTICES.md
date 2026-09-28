@@ -17,6 +17,14 @@ mova is not affiliated with or endorsed by Microsoft. "Visual Studio Code" and "
 
 The React integration is **@monaco-editor/react** 4.7.0 (MIT, Copyright (c) 2018 Suren Atoyan): https://github.com/suren-atoyan/monaco-react
 
+## File-type icons — Material Icon Theme
+
+File icons in mova (Python, TypeScript, PDF and so on) come from the **Material Icon Theme**.
+
+- Project: https://github.com/material-extensions/vscode-material-icon-theme
+- Version: 5.38.1 (a subset of the icons, unmodified, in `src/assets/file-icons/`)
+- License: MIT, Copyright (c) 2025 Material Extensions. Full text in [`licenses/material-icon-theme-LICENSE.txt`](licenses/material-icon-theme-LICENSE.txt).
+
 ## Application
 
 | Component | Version | Licence | Copyright / project |
@@ -26,12 +34,20 @@ The React integration is **@monaco-editor/react** 4.7.0 (MIT, Copyright (c) 2018
 | Zustand | 5.0.15 | MIT | Paul Henschel — https://github.com/pmndrs/zustand |
 | Lucide icons (`lucide-react`) | 1.48.0 | ISC | Lucide Contributors (portions Feather, MIT, Cole Bemis) — https://lucide.dev |
 | Inter typeface (`@fontsource-variable/inter`) | 5.3.0 | SIL Open Font License 1.1 | The Inter Project Authors (Rasmus Andersson) — https://rsms.me/inter |
+| tauri-plugin-opener | 2 | MIT OR Apache-2.0 | The Tauri Programme — https://tauri.app |
 | reqwest | 0.12 | MIT OR Apache-2.0 | Sean McArthur — https://github.com/seanmonstar/reqwest |
+| tokio | 1 | MIT | Tokio Contributors — https://tokio.rs |
+| sha2, base64, rand, url | — | MIT OR Apache-2.0 | RustCrypto, Marshall Pierce, The Rand Project Developers, The rust-url developers |
+| marked (docs site and website build) | 12.0.2 | MIT | Christopher Jeffrey and the Marked contributors — https://github.com/markedjs/marked |
 | serde, serde_json | 1.x | MIT OR Apache-2.0 | Erick Tryzelaar, David Tolnay — https://serde.rs |
 
 ## Build and development tools
 
 These are used to build mova and are not shipped in the app: Vite (MIT), TypeScript (Apache-2.0), @vitejs/plugin-react (MIT), Playwright (Apache-2.0).
+
+## Services
+
+Sign-in uses **Google Identity** (Google Identity Services on the web, OAuth 2.0 on desktop), and sync and file editing use the **Google Drive API**. These are Google services governed by Google's terms; "Google" and "Google Drive" are trademarks of Google LLC. mova is not affiliated with or endorsed by Google.
 
 ## Licence texts
 

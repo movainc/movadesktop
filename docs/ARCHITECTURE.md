@@ -52,9 +52,30 @@ Project ─┬─< Task ── noteId ──> Note
 
 A task can have a `due` date and, separately, a scheduled time block (`scheduledStart`/`scheduledEnd`). That is how an intention becomes time on the calendar. Deleting a project detaches its items instead of deleting them.
 
+## Accounts, storage and sync
+
+- **Session** (`src/lib/session.ts`): device-level state, persisted as `mova-session`. It holds the signed-in account, the theme (System by default) and the sync preference.
+- **Workspace per account** (`bindWorkspace` in `src/lib/store.ts`): the workspace store is persisted under `mova-workspace:<account id>`. On sign-in the store is reset and rehydrated from that key, so accounts never see each other's data.
+- **Sign-in** (`src/lib/auth.ts`):
+  - On desktop, the native session in Rust is the source of truth at launch.
+  - On the web, the Google Identity Services ID token is decoded and checked for audience and expiry.
+  - In a plain browser, only the development/screenshot test account can be restored from storage.
+- **Sync** (`src/lib/sync.ts`): on sign-in it pulls the Drive copy (newest `savedAt` wins). After that it pushes a snapshot of the data slices three seconds after the last change.
+- **Tour** (`src/components/Tour.tsx`): each step names a view, a target selector to highlight, and a completion check against the store. It advances when the user has really done the step.
+
 ## Native layer
 
-`src-tauri` is a standard Tauri 2 app. The only custom code is `ai.rs`:
+`src-tauri` is a standard Tauri 2 app with two custom modules.
+
+`auth.rs`, Google sign-in and Drive (see [Google sign-in](AUTH.md)):
+
+- OAuth 2.0 with PKCE and a loopback redirect. It opens the system browser with the opener plugin and receives the code on `127.0.0.1:<random port>`.
+- Tokens live in `session.json` (mode `0600`) and are refreshed automatically. The UI only ever receives the profile.
+- Incremental authorization (`include_granted_scopes`) adds Drive permissions only when a feature needs them.
+- Commands: `auth_*` for sign-in, `drive_pull` / `drive_push` for workspace sync, and `gdrive_list` / `gdrive_read` / `gdrive_write` / `gdrive_create` for Drive files.
+- Unit tests cover PKCE (the RFC 7636 test vector), client-JSON parsing, the auth URL, the callback parsing (including state mismatch) and Drive query escaping.
+
+`ai.rs`, the AI features:
 
 - The key is resolved in this order: the `MOVA_OPENAI_API_KEY` env var, then a key saved in Settings (in `<app config dir>/ai.json`, mode `0600` on Unix).
 - `ai_complete` posts to OpenAI Chat Completions with `reqwest` (rustls) and caps the reply at 600 tokens.
@@ -66,6 +87,17 @@ A task can have a `due` date and, separately, a scheduled time block (`scheduled
 - Type is Inter Variable (bundled): a 13px base, section labels in 11px uppercase, and 24px titles with tight tracking.
 - Borders are 1px `#E8E8E8`, radii 6/8/12px, shadows appear only on hover and overlays, and motion is 120–180ms ease-out.
 - Dark mode redefines the same tokens; components never hard-code colours.
+
+## The four deliverables
+
+| Deliverable | Source | Output |
+|---|---|---|
+| Desktop app | `src/` + `src-tauri/` | Installers from `.github/workflows/release.yml` |
+| Web app | `src/`, built with `--mode web` | `web/dist` → movadesktopweb.vercel.app |
+| Website | `website/` (pages + layout, built by `build.mjs`) | `website/dist` → movadesktop.vercel.app |
+| Docs | `docs/` (Markdown rendered by `docs/index.html`) | Served as-is → movadocs.vercel.app |
+
+The web app is the same code. Features that need the native layer (AI, Drive sync, Drive files) check `isDesktop` and are hidden or explained on the web.
 
 ## Roadmap to the full platform
 
