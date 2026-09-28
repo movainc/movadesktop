@@ -1,0 +1,88 @@
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f7;
+  --surface-2: #f0f0f0;
+  --surface-hover: #f3f3f3;
+  --border: #e8e8e8;
+  --border-strong: #d9d9d9;
+  --text: #171717;
+  --text-2: #4d4d4d;
+  --muted: #8a8a8a;
+  --faint: #b5b5b5;
+
+  --accent: #7c6fc4;
+  --accent-hover: #6e61b8;
+  --accent-soft: #f1effa;
+  --accent-text: #5b4fa6;
+  --on-accent: #ffffff;
+
+  --danger: #c2524f;
+  --success: #5b9278;
+
+  --logo-ring: #4d4d4d;
+  --logo-ink: #171717;
+
+  --overlay: rgba(23, 23, 23, 0.28);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  --radius-sm: 6px;
+  --radius: 8px;
+  --radius-lg: 12px;
+
+  --font: "Inter Variable", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+
+  --sidebar-w: 236px;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111111;
+    --surface: #171717;
+    --surface-2: #1e1e1e;
+    --surface-hover: #1c1c1c;
+    --border: #262626;
+    --border-strong: #333333;
+    --text: #ededed;
+    --text-2: #b3b3b3;
+    --muted: #7a7a7a;
+    --faint: #525252;
+    --accent: #8f83d6;
+    --accent-hover: #a096e0;
+    --accent-soft: #221f33;
+    --accent-text: #b3aaeb;
+    --logo-ring: #8a8a8a;
+    --logo-ink: #ededed;
+    --overlay: rgba(0, 0, 0, 0.55);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.6);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #111111;
+  --surface: #171717;
+  --surface-2: #1e1e1e;
+  --surface-hover: #1c1c1c;
+  --border: #262626;
+  --border-strong: #333333;
+  --text: #ededed;
+  --text-2: #b3b3b3;
+  --muted: #7a7a7a;
+  --faint: #525252;
+  --accent: #8f83d6;
+  --accent-hover: #a096e0;
+  --accent-soft: #221f33;
+  --accent-text: #b3aaeb;
+  --logo-ring: #8a8a8a;
+  --logo-ink: #ededed;
+  --overlay: rgba(0, 0, 0, 0.55);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
+}
