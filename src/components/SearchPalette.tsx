@@ -46,7 +46,7 @@ export function SearchPalette({ onNewProject }: { onNewProject: () => void }) {
         key: n.id, group: "Notes", icon: <FileText size={15} />, title: n.title || "Untitled", sub: proj(n.projectId)?.name, run: run(() => s.go({ name: "notes", id: n.id })),
       })),
       ...s.files.filter((f) => hit(f.name) || viaProject(f.projectId)).map((f) => ({
-        key: f.id, group: "Files", icon: <FileIcon kind={f.kind} size={15} />, title: f.name, sub: proj(f.projectId)?.name, run: run(() => { s.touch("file", f.id); s.go(typeof f.content === "string" ? { name: "code", fileId: f.id } : { name: "files", folderId: f.folderId }); }),
+        key: f.id, group: "Files", icon: <FileIcon name={f.name} size={15} />, title: f.name, sub: proj(f.projectId)?.name, run: run(() => { s.touch("file", f.id); s.go(typeof f.content === "string" ? { name: "code", fileId: f.id } : { name: "files", folderId: f.folderId }); }),
       })),
       ...s.events.filter((e) => hit(e.title) || viaProject(e.projectId)).map((e) => ({
         key: e.id, group: "Calendar", icon: <CalendarDays size={15} />, title: e.title, sub: `${fmtDate(e.start, { weekday: "short", day: "numeric", month: "short" })} · ${fmtTime(e.start)}`, run: run(() => s.go({ name: "calendar" })),

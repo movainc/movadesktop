@@ -1,3 +1,4 @@
+import { ROOT_FOLDER } from "../lib/seed";
 import { useState } from "react";
 import { ChevronRight, ExternalLink, FileText, Link2, Plus, Share2, Star, Target, Trash2, Upload } from "lucide-react";
 import { useStore } from "../lib/store";
@@ -5,6 +6,7 @@ import { daysFromToday, dueLabel, fmtDate, fmtTime, fromDateInput, relativeAgo, 
 import type { ID, ProjectTab } from "../lib/types";
 import { Empty, QuickAddTask, Section, TaskRow } from "../components/ui";
 import { TaskPanel } from "../components/TaskPanel";
+import { IconPickerButton } from "../components/ProjectIcon";
 import { FileTable, useFileUpload } from "./Files";
 import { AREAS } from "./Projects";
 
@@ -22,7 +24,7 @@ export function ProjectDetail({ id, tab = "overview" }: { id: ID; tab?: ProjectT
   const project = s.projects.find((p) => p.id === id);
   const [openTask, setOpenTask] = useState<ID | null>(null);
   const [showDone, setShowDone] = useState(false);
-  const upload = useFileUpload({ projectId: id, folderId: "f-projects" });
+  const upload = useFileUpload({ projectId: id, folderId: ROOT_FOLDER });
 
   if (!project) return <div className="page"><Empty title="Project not found" /></div>;
 
@@ -89,7 +91,7 @@ export function ProjectDetail({ id, tab = "overview" }: { id: ID; tab?: ProjectT
 
         <header className="page-header project-header">
           <div className="project-title-block">
-            <span className="project-badge project-badge-lg" style={{ background: project.color }}>{project.name.charAt(0)}</span>
+            <IconPickerButton project={project} onChange={(icon) => s.updateProject(id, { icon })} />
             <div>
               <input className="title-input" value={project.name} onChange={(e) => s.updateProject(id, { name: e.target.value })} aria-label="Project name" />
               <input className="desc-input" value={project.description} placeholder="Add a description" onChange={(e) => s.updateProject(id, { description: e.target.value })} aria-label="Description" />

@@ -4,7 +4,10 @@ import { useStore } from "../lib/store";
 import { daysFromToday } from "../lib/dates";
 import type { View } from "../lib/types";
 import { LogoMark } from "./Logo";
-import { Kbd, ProjectDot, modKey } from "./ui";
+import { Kbd, modKey } from "./ui";
+import { ProjectGlyph } from "./ProjectIcon";
+import { AccountMenu } from "./AccountMenu";
+import { isDesktop } from "../lib/ai";
 
 function NavItem({ icon, label, active, onClick, count, collapsed }: { icon: ReactNode; label: string; active: boolean; onClick: () => void; count?: number; collapsed: boolean }) {
   return (
@@ -64,7 +67,7 @@ export function Sidebar({ onNewProject }: { onNewProject: () => void }) {
         <NavItem collapsed={collapsed} icon={<LayoutGrid size={iconSize} />} label="Projects" active={is("projects") || is("project")} onClick={() => go({ name: "projects" })} />
         <NavItem collapsed={collapsed} icon={<CalendarDays size={iconSize} />} label="Calendar" active={is("calendar")} onClick={() => go({ name: "calendar" })} />
         <NavItem collapsed={collapsed} icon={<FileText size={iconSize} />} label="Notes" active={is("notes")} onClick={() => go({ name: "notes" })} />
-        <NavItem collapsed={collapsed} icon={<Folder size={iconSize} />} label="Files" active={view.name === "files" && !view.filter && view.folderId !== "f-shared"} onClick={() => go({ name: "files" })} />
+        <NavItem collapsed={collapsed} icon={<Folder size={iconSize} />} label="Files" active={view.name === "files" && view.filter !== "starred" && view.filter !== "recent" && view.folderId !== "f-shared"} onClick={() => go({ name: "files" })} />
         <NavItem collapsed={collapsed} icon={<Code2 size={iconSize} />} label="Code" active={is("code")} onClick={() => go({ name: "code" })} />
       </nav>
 
@@ -84,9 +87,10 @@ export function Sidebar({ onNewProject }: { onNewProject: () => void }) {
               <Plus size={13} />
             </button>
           </div>
+          {projects.length === 0 && <p className="sidebar-empty">No projects yet</p>}
           {(starred.length ? starred : projects.slice(0, 5)).map((p) => (
             <button key={p.id} className={`nav-item nav-project ${view.name === "project" && view.id === p.id ? "is-active" : ""}`} onClick={() => go({ name: "project", id: p.id })}>
-              <span className="nav-icon"><ProjectDot color={p.color} /></span>
+              <span className="nav-icon"><ProjectGlyph project={p} /></span>
               <span className="nav-label">{p.name}</span>
             </button>
           ))}
@@ -94,10 +98,11 @@ export function Sidebar({ onNewProject }: { onNewProject: () => void }) {
       )}
 
       <div className="sidebar-bottom">
-        {aiEnabled && (
+        {aiEnabled && isDesktop && (
           <NavItem collapsed={collapsed} icon={<Sparkles size={iconSize} />} label="Assistant" active={assistantOpen} onClick={() => setAssistantOpen(!assistantOpen)} />
         )}
         <NavItem collapsed={collapsed} icon={<Settings size={iconSize} />} label="Settings" active={is("settings")} onClick={() => go({ name: "settings" })} />
+        <AccountMenu collapsed={collapsed} />
       </div>
     </aside>
   );

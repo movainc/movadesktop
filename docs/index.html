@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>mova docs</title>
+  <meta name="description" content="Documentation for mova — the project-based workspace for desktop and web." />
+  <link rel="icon" href="/assets/mova.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/tokens.css" />
+  <link rel="stylesheet" href="/docs.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <a class="brand" href="/"><img src="/assets/mova.svg" alt="" width="24" height="24" /><span>mova</span><span class="brand-tag">docs</span></a>
+        <button class="icon-btn menu-close" aria-label="Close menu" onclick="document.body.classList.remove('nav-open')">✕</button>
+      </div>
+      <label class="search-trigger">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="filter" placeholder="Search docs" autocomplete="off" />
+        <kbd class="kbd">/</kbd>
+      </label>
+      <nav class="nav" id="nav" aria-label="Documentation"></nav>
+      <div class="sidebar-bottom">
+        <a class="nav-item" href="https://movadesktop.vercel.app"><span class="nav-icon">←</span><span class="nav-label">movadesktop.vercel.app</span></a>
+        <a class="nav-item" href="https://movadesktopweb.vercel.app"><span class="nav-icon">↗</span><span class="nav-label">Open mova web</span></a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <button class="icon-btn menu-open" aria-label="Open menu" onclick="document.body.classList.add('nav-open')">☰</button>
+        <nav class="crumbs" id="crumbs"></nav>
+        <span class="push"></span>
+        <a class="btn" href="https://movadesktop.vercel.app/download">Download</a>
+        <a class="btn btn-primary" href="https://movadesktopweb.vercel.app">Open app</a>
+      </div>
+      <div class="page-wrap">
+        <article class="page" id="page">
+          <p class="quiet">Loading…</p>
+        </article>
+        <aside class="toc" id="toc" aria-label="On this page"></aside>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="/docs.js"></script>
+</body>
+</html>

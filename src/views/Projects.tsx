@@ -5,6 +5,7 @@ import { PROJECT_COLORS } from "../lib/seed";
 import { dueLabel, fromDateInput } from "../lib/dates";
 import type { Area } from "../lib/types";
 import { Empty, Field, Modal } from "../components/ui";
+import { IconGrid, ProjectBadge } from "../components/ProjectIcon";
 
 export const AREAS: Area[] = ["School", "Work", "Personal", "Content", "Side projects"];
 
@@ -16,10 +17,11 @@ export function NewProjectModal({ onClose }: { onClose: () => void }) {
   const [area, setArea] = useState<Area>("Personal");
   const [deadline, setDeadline] = useState("");
   const [color, setColor] = useState(PROJECT_COLORS[0]);
+  const [icon, setIcon] = useState<string | undefined>();
 
   const create = () => {
     if (!name.trim()) return;
-    const p = addProject({ name: name.trim(), description, area, deadline: fromDateInput(deadline), color });
+    const p = addProject({ name: name.trim(), description, area, deadline: fromDateInput(deadline), color, icon });
     onClose();
     go({ name: "project", id: p.id });
   };
@@ -57,6 +59,12 @@ export function NewProjectModal({ onClose }: { onClose: () => void }) {
             {PROJECT_COLORS.map((c) => (
               <button type="button" key={c} className={`swatch ${c === color ? "is-active" : ""}`} style={{ background: c }} onClick={() => setColor(c)} aria-label={`Colour ${c}`} />
             ))}
+          </div>
+        </Field>
+        <Field label="Icon">
+          <div className="icon-field">
+            <ProjectBadge project={{ name: name || "?", color, icon }} size={40} />
+            <IconGrid value={icon} color={color} onChange={setIcon} />
           </div>
         </Field>
         <button type="submit" hidden />
@@ -104,7 +112,7 @@ export function Projects({ onNewProject }: { onNewProject: () => void }) {
             return (
               <article key={p.id} className="project-card" onClick={() => go({ name: "project", id: p.id })}>
                 <header className="project-card-head">
-                  <span className="project-badge" style={{ background: p.color }}>{p.name.charAt(0)}</span>
+                  <ProjectBadge project={p} size={32} />
                   <button
                     className={`icon-btn star ${p.starred ? "is-on" : ""}`}
                     aria-label={p.starred ? "Unstar" : "Star"}

@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
-import { Monitor, Moon, Sun } from "lucide-react";
+import { Cloud, HardDrive, Monitor, Moon, Sun } from "lucide-react";
 import { aiConfigure, aiForgetKey, aiStatus, isDesktop, type AiStatus } from "../lib/ai";
 import { useStore } from "../lib/store";
+import { useSession } from "../lib/session";
+import { authStatus, configureGoogle, forgetGoogleClient, signOut, type AuthStatus } from "../lib/auth";
+import { startSync, stopSync, syncNow } from "../lib/sync";
+import { Avatar, SyncBadge } from "../components/AccountMenu";
+import { GoogleDriveLogo } from "../components/GoogleDriveLogo";
 import type { Theme } from "../lib/types";
 import { LogoMark } from "../components/Logo";
 import { Kbd, modKey } from "../components/ui";
@@ -12,6 +17,7 @@ const CREDITS = [
   { name: "React", what: "interface", license: "MIT · © Meta", url: "https://react.dev" },
   { name: "Zustand", what: "state", license: "MIT", url: "https://github.com/pmndrs/zustand" },
   { name: "Lucide", what: "icons", license: "ISC", url: "https://lucide.dev" },
+  { name: "Material Icon Theme", what: "file-type icons", license: "MIT · © Material Extensions", url: "https://github.com/material-extensions/vscode-material-icon-theme" },
   { name: "Inter", what: "typeface by Rasmus Andersson", license: "SIL OFL 1.1", url: "https://rsms.me/inter" },
 ];
 
@@ -22,7 +28,8 @@ const THEMES: { id: Theme; label: string; icon: typeof Sun }[] = [
 ];
 
 export function Settings() {
-  const { theme, setTheme, resetWorkspace } = useStore();
+  const { theme, setTheme } = useSession();
+  const { resetWorkspace, startTour } = useStore();
   return (
     <div className="page page-narrow">
       <header className="page-header"><div><h1>Settings</h1></div></header>
@@ -39,7 +46,14 @@ export function Settings() {
         </div>
       </section>
 
-      <AiSettings />
+      <AccountSettings />
+
+      {isDesktop ? <AiSettings /> : (
+        <section className="settings-group">
+          <h2 className="section-title">AI</h2>
+          <p className="quiet">The assistant and AI suggestions are available in the mova desktop app, which keeps API keys safely out of the browser.</p>
+        </section>
+      )}
 
       <section className="settings-group">
         <h2 className="section-title">Keyboard</h2>
@@ -53,7 +67,7 @@ export function Settings() {
           <dt>Files</dt><dd><Kbd>{modKey}</Kbd><Kbd>6</Kbd></dd>
           <dt>Code</dt><dd><Kbd>{modKey}</Kbd><Kbd>7</Kbd></dd>
           <dt>Focus</dt><dd><Kbd>{modKey}</Kbd><Kbd>⇧</Kbd><Kbd>F</Kbd></dd>
-          <dt>Assistant</dt><dd><Kbd>{modKey}</Kbd><Kbd>J</Kbd></dd>
+          {isDesktop && <><dt>Assistant</dt><dd><Kbd>{modKey}</Kbd><Kbd>J</Kbd></dd></>}
           <dt>Toggle sidebar</dt><dd><Kbd>{modKey}</Kbd><Kbd>\</Kbd></dd>
         </dl>
       </section>
@@ -62,17 +76,17 @@ export function Settings() {
         <h2 className="section-title">Workspace</h2>
         <div className="settings-row">
           <div>
-            <p className="settings-label">Reset sample workspace</p>
-            <p className="quiet">Replaces everything on this device with the sample projects.</p>
+            <p className="settings-label">Tutorial</p>
+            <p className="quiet">Walk through mova step by step: projects, tasks, calendar, notes, files, code, search and focus.</p>
           </div>
-          <button className="btn btn-danger" onClick={() => confirm("Reset workspace? This replaces all local data.") && resetWorkspace()}>Reset</button>
+          <button className="btn" onClick={startTour}>Start tutorial</button>
         </div>
         <div className="settings-row">
           <div>
-            <p className="settings-label">Account & sync</p>
-            <p className="quiet">Your workspace is stored on this device. Accounts, sync and sharing arrive with the mova cloud.</p>
+            <p className="settings-label">Clear workspace</p>
+            <p className="quiet">Deletes every project, task, note, file and event in this account's workspace. If cloud sync is on, the cleared workspace syncs too.</p>
           </div>
-          <span className="chip">Local</span>
+          <button className="btn btn-danger" onClick={() => confirm("Delete everything in this workspace? This can't be undone.") && resetWorkspace()}>Clear…</button>
         </div>
       </section>
 
@@ -94,7 +108,8 @@ export function Settings() {
         <LogoMark size={28} />
         <div>
           <p className="settings-label">mova 0.1.0</p>
-          <p className="quiet">Everything for what you're working on.</p>
+          <p className="quiet">Everything for what you're working on. <a className="about-link" href="https://movadesktop.vercel.app" target="_blank" rel="noreferrer">movadesktop.vercel.app</a></p>
+          <p className="quiet"><a className="about-link" href="https://movadesktop.vercel.app/terms" target="_blank" rel="noreferrer">Terms of Use</a> · <a className="about-link" href="https://movadesktop.vercel.app/privacy" target="_blank" rel="noreferrer">Privacy</a></p>
         </div>
       </footer>
     </div>
@@ -165,6 +180,88 @@ function AiSettings() {
             <p className="quiet">The key is kept in mova's config folder on this computer and is only used by the app's native layer. It never goes to the interface or into sync.</p>
           </div>
         )
+      )}
+    </section>
+  );
+}
+
+function AccountSettings() {
+  const { account, cloudSync, setCloudSync, syncState } = useSession();
+  const [status, setStatus] = useState<AuthStatus | null>(null);
+  const [clientJson, setClientJson] = useState("");
+  const [msg, setMsg] = useState("");
+  useEffect(() => { authStatus().then(setStatus).catch(() => {}); }, []);
+  if (!account) return null;
+
+  const isGoogleDesktop = account.provider === "google";
+  const toggleSync = async (on: boolean) => {
+    setCloudSync(on);
+    if (!isGoogleDesktop) return;
+    if (on && status?.drive) await startSync();
+    else { stopSync(); useSession.getState().setSync("off"); }
+    if (on && !status?.drive) setMsg("Sign out and back in to allow mova to use its Drive folder.");
+  };
+
+  return (
+    <section className="settings-group">
+      <h2 className="section-title">Account</h2>
+      <div className="settings-row">
+        <div className="settings-account">
+          <Avatar name={account.name} picture={account.picture} size={40} />
+          <div>
+            <p className="settings-label">{account.name}</p>
+            <p className="quiet">{account.email} · {account.provider === "test" ? "Test account" : "Google"}</p>
+          </div>
+        </div>
+        <button className="btn" onClick={signOut}>Sign out</button>
+      </div>
+
+      <div className="settings-row">
+        <div>
+          <p className="settings-label">Where your workspace is saved</p>
+          <p className="quiet">
+            {isGoogleDesktop
+              ? "Always on this device. With cloud sync on, it's also saved to a private mova folder in your Google Drive that only mova can see, so it follows you to other computers."
+              : account.provider === "google-web"
+                ? "In this browser. Use the desktop app for Google Drive sync."
+                : "On this device."}
+          </p>
+          {isGoogleDesktop && <div className="settings-sync"><SyncBadge />{syncState !== "off" && <button className="link-btn" onClick={syncNow}>Sync now</button>}</div>}
+          {msg && <p className="quiet">{msg}</p>}
+        </div>
+        {isGoogleDesktop ? (
+          <div className="seg-toggle" role="radiogroup" aria-label="Storage">
+            <button role="radio" aria-checked={!cloudSync} className={!cloudSync ? "is-active" : ""} onClick={() => toggleSync(false)}><HardDrive size={13} /> Device</button>
+            <button role="radio" aria-checked={cloudSync} className={cloudSync ? "is-active" : ""} onClick={() => toggleSync(true)}><Cloud size={13} /> Device + Drive</button>
+          </div>
+        ) : <span className="chip"><HardDrive size={12} /> Local</span>}
+      </div>
+
+      {isGoogleDesktop && (
+        <div className="settings-row">
+          <div>
+            <p className="settings-label settings-label-icon"><GoogleDriveLogo size={14} /> Google Drive files</p>
+            <p className="quiet">{status?.drive_files ? "Connected. Open Files → Google Drive to edit files in your Drive." : "Not connected. Open Files → Google Drive to connect."}</p>
+          </div>
+          <span className={`chip ${status?.drive_files ? "is-active" : ""}`}>{status?.drive_files ? "Connected" : "Off"}</span>
+        </div>
+      )}
+
+      {isDesktop && (
+        <details className="settings-advanced">
+          <summary>Google sign-in configuration</summary>
+          <p className="quiet">
+            {status?.configured ? `OAuth client configured (${status.client_source === "env" ? "from MOVA_GOOGLE_CLIENT_ID" : "saved on this computer"}).` : "No OAuth client configured."} Replace it by pasting the Desktop-app client JSON from Google Cloud Console.
+          </p>
+          <form className="field-row" onSubmit={async (e) => {
+            e.preventDefault();
+            try { setStatus(await configureGoogle(clientJson)); setClientJson(""); setMsg("Google OAuth client saved."); } catch (err) { setMsg(String(err)); }
+          }}>
+            <input className="input" value={clientJson} onChange={(e) => setClientJson(e.target.value)} placeholder="Client JSON or client ID" spellCheck={false} />
+            <button className="btn" type="submit" disabled={!clientJson.trim()}>Save</button>
+            {status?.client_source === "saved" && <button className="btn btn-ghost btn-danger" type="button" onClick={async () => setStatus(await forgetGoogleClient())}>Remove</button>}
+          </form>
+        </details>
       )}
     </section>
   );

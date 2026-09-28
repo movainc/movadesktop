@@ -1,6 +1,6 @@
 # AI in mova
 
-AI in mova is **optional, small and suggestion-only**. It helps you decide and get started. The real work, like writing the essay, building the robot or solving the problem, stays with you.
+AI in mova is **desktop only, optional, small and suggestion-only**. It helps you decide and get started. The real work, like writing the essay, building the robot or solving the problem, stays with you.
 
 ## What it does
 
@@ -44,6 +44,10 @@ How the key is handled:
 
 Toggle **Settings → AI → AI assistance** off. The Assistant, suggestion buttons and `Ctrl/⌘ J` disappear, and no AI requests are made.
 
-## In the browser
+## Web app
 
-When the UI runs in a plain browser (`npm run dev`), AI is disabled. It only runs through the desktop app's native layer, so keys stay out of the browser.
+The web app doesn't include AI. It only runs through the desktop app's native layer, so keys never sit in a web page.
+
+## Development
+
+Put `MOVA_OPENAI_API_KEY` in `.env.local` (see `.env.example`). `npm run tauri dev` loads it at runtime in debug builds.

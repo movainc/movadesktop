@@ -2,6 +2,8 @@
 
 mova is organised around **projects**. Everything you add (a task, a note, a file, an event, a link) can belong to a project, and you can find it again from anywhere with search.
 
+You sign in with Google before using mova, and each account has its own workspace. A new account starts empty, with a hands-on tour. See [Getting started](GETTING_STARTED.md).
+
 ## The sidebar
 
 | Item | What it's for |
@@ -16,8 +18,9 @@ mova is organised around **projects**. Everything you add (a task, a note, a fil
 | Code | The code editor |
 | Starred / Recent / Shared | Quick file views |
 | Projects list | Your starred projects (click **+** to create one) |
-| Assistant | The optional AI helper (`Ctrl/⌘ J`) |
-| Settings | Theme, AI, shortcuts, legal and credits |
+| Assistant | The optional AI helper (`Ctrl/⌘ J`, desktop only) |
+| Settings | Account and storage, theme, AI, shortcuts, tutorial, legal and credits |
+| Your name | The account menu: sync status, Sync now, Settings, Take the tour, Sign out |
 
 Collapse the sidebar with the panel button or `Ctrl/⌘ \`.
 
@@ -31,7 +34,7 @@ Collapse the sidebar with the panel button or `Ctrl/⌘ \`.
 
 ## Projects
 
-Create a project with **New project**. Give it a name, an optional description, an area (School, Work, Personal, Content, Side projects), a deadline and a colour.
+Create a project with **New project**. Give it a name, an optional description, an area (School, Work, Personal, Content, Side projects), a deadline, a colour and an **icon**. To change the icon later, click the project's badge next to its name.
 
 Inside a project:
 
@@ -68,12 +71,13 @@ Edit the name and description by clicking on them. Star a project to pin it to t
 
 ## Files
 
-- Browse folders on the left. The breadcrumb shows where you are.
+- Browse folders on the left. The breadcrumb shows where you are. Files show real file-type icons (Python, TypeScript, PDF, image and so on).
+- **Google Drive** (desktop) under *Cloud* opens your Drive so you can edit files in place. See [Sync & Google Drive](DRIVE.md).
 - **Upload**, or drag files anywhere onto the page.
 - Click a file to see its details, assign it to a project, star it, delete it, or (for text and code files) **Open in editor**.
 - **Starred**, **Recent** and **Shared** in the sidebar are shortcuts.
 
-> In this version, files are catalogued on your device. Contents are kept for text and code files up to 1 MB so you can edit them. Cloud storage and sync arrive with mova accounts.
+> Files are catalogued in your workspace. Contents are kept for text and code files up to 1 MB so you can edit them. With Drive sync on (desktop), your workspace is also saved to your Google Drive.
 
 ## Code
 
@@ -86,7 +90,7 @@ The Code view is a full editor built on **Monaco**, the open-source editor at th
 - The usual editor shortcuts work: `Ctrl/⌘ F` find, `Ctrl/⌘ H` replace, `Alt`-click for multiple cursors, `Ctrl/⌘ /` to toggle comments, `Alt ↑/↓` to move lines.
 - mova's own shortcuts (`Ctrl/⌘ K`, `Ctrl/⌘ J`, `Ctrl/⌘ ⇧ F`) keep working inside the editor.
 
-The **Web Portfolio** and **Code Examples** projects contain sample files to explore.
+Files you open from Google Drive are listed under **Google Drive** in the explorer and save straight back to Drive (*Saved to Drive* in the status bar).
 
 ## Focus mode
 
@@ -102,15 +106,16 @@ Press `Ctrl/⌘ K`. With an empty box you get quick actions (new note, new proje
 
 ## Assistant
 
-See [AI.md](AI.md). Open it with `Ctrl/⌘ J` or **Assistant** in the sidebar. Ask things like *"What should I work on next?"* or *"Plan the rest of my day"*.
+Desktop only; see [AI](AI.md). Open it with `Ctrl/⌘ J` or **Assistant** in the sidebar. Ask things like *"What should I work on next?"* or *"Plan the rest of my day"*.
 
 ## Settings
 
-- **Appearance**: System, Light or Dark.
-- **AI**: turn AI on or off, add an API key, choose the model.
+- **Appearance**: System (the default, which follows your device), Light or Dark.
+- **Account**: who you're signed in as, where your workspace is saved (device only or device + Google Drive), sync status, Google Drive connection, and the Google sign-in configuration.
+- **AI** (desktop): turn AI on or off, add an API key, choose the model.
 - **Keyboard**: a list of shortcuts.
-- **Workspace**: reset the sample workspace.
-- **Legal & credits**: open-source attributions.
+- **Workspace**: replay the tutorial, or clear the workspace.
+- **Legal & credits**: open-source attributions and links to the Terms and Privacy Notice.
 
 ## Keyboard shortcuts
 
@@ -126,4 +131,4 @@ See [AI.md](AI.md). Open it with `Ctrl/⌘ J` or **Assistant** in the sidebar. A
 
 ## Your data
 
-Your workspace is saved on this device automatically. **Settings → Workspace → Reset** restores the sample workspace, and **it replaces your data**.
+Your workspace is saved automatically: on desktop, on this device and (if you choose) in your Google Drive; on the web, in your browser. **Settings → Workspace → Clear** deletes everything in the current account's workspace.
