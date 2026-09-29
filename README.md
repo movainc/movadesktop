@@ -1,5 +1,5 @@
-# movadesktop
-Desktop App for MovaInc.
+# knoxus
+tmp for knoxus -- created codespace for this repo by mistake
 
 > **Knoxus** — the platform this repository is being built for — is at the **planning / pre-code**
 > stage. All design work lives in [`docs/`](docs/README.md), and is also published as a static site.
